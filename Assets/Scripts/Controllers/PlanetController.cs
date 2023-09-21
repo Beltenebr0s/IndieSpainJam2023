@@ -39,7 +39,7 @@ public class PlanetController : MonoBehaviour
             timeSinceLastAttack += Time.deltaTime;
             if(timeSinceLastAttack >= timeToNextAttack)
             {
-                attack();
+                //attack();
             }
         }
     }

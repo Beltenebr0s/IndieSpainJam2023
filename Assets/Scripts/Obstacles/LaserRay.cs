@@ -42,7 +42,7 @@ public class LaserRay : MonoBehaviour, IMovingObstacle
                 runShootTimer = false;
                 tShoot = 0f;
                 ShootLaser();
-                // Destroy(this.gameObject);
+                Destroy(this.gameObject);
             }
             targetPosition = player.transform.position;
             tShoot += Time.deltaTime;

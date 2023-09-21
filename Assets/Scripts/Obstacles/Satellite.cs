@@ -35,8 +35,7 @@ public class Satellite : MonoBehaviour, IIdleObstacle
 
         float earthToPlayerDistance = (this.earth.transform.position - this.player.transform.position).magnitude;
         
-        Vector3 pos = Random.insideUnitSphere * earthToPlayerDistance / 2 + 
-                    new Vector3(this.minDistanceToEarth, this.minDistanceToEarth, this.minDistanceToEarth);
+        Vector3 pos = this.earth.transform.position + Random.insideUnitSphere * earthToPlayerDistance / 2;
         
         this.direction = new Vector3(Random.value, Random.value, Random.value).normalized;
         

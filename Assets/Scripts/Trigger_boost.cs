@@ -6,6 +6,22 @@ public class Trigger_boost : MonoBehaviour
 {
     public float boostAmount = 5.0f; // Ajusta la velocidad
     public float boostDuration = 5.0f; // Duración del aumento de velocidad
+    public GameObject player;
+    void Start()
+    {
+        player = GameObject.Find("Player");
+    }
+    void Update()
+    {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+        if (this.transform.position.z <= player.transform.position.z)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

@@ -19,7 +19,7 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
 
     public void Move()
     {
-        this.transform.position += Vector3.right * speed * Time.deltaTime;
+        this.transform.position += direction * speed * Time.deltaTime;
     }
 
     public void DamagePlayer(int damageValue)
@@ -34,17 +34,17 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         this.minDistanceToEarth = 0.5f;
         this.minDistanceToPlayer = 1f;
         
-        Vector3 earthToPlayerVector = this.player.transform.position - this.earth.transform.position;
-        Debug.Log("Distancia a la tierra: " + earthToPlayerVector.magnitude);
-        Vector3 startingPoint = earthToPlayerVector.normalized * 
-                                Random.Range(minDistanceToEarth, earthToPlayerVector.magnitude / 2 - minDistanceToPlayer);
+        Vector3 earthToPlayerVector = this.earth.transform.position - this.player.transform.position;
+        Vector3 startingPoint = earthToPlayerVector.normalized *  earthToPlayerVector.magnitude / 2;
 
         direction = Random.value <= 0.5 ? Vector3.left : Vector3.right;
 
-        float halfHeight = Camera.main.orthographicSize;
-        float halfWidth = Camera.main.aspect * halfHeight;
+        float cameraAngle = Mathf.PI * 2 * (90 - Camera.main.fieldOfView / 2);
+        float positionX = Mathf.Cos(cameraAngle) * earthToPlayerVector.magnitude / (2*Mathf.Sin(cameraAngle));
         
-        Vector3 pos = startingPoint + direction * halfWidth;
+        Vector3 pos = startingPoint - direction * positionX;
+        Debug.Log("Starting point: " + pos);
+        Debug.Log("X: " + positionX);
         return pos;
     }
     
