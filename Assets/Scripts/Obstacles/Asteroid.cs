@@ -12,16 +12,6 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
     public float minDistanceToEarth;
     public float minDistanceToPlayer;
 
-    void Start()
-    {
-        earth = GameObject.Find("Earth");
-        player = GameObject.Find("Player");
-        this.minDistanceToEarth = 0.5f;
-        this.minDistanceToPlayer = 1f;
-
-        this.transform.position = this.FindStartingPosition();
-    }
-
     void Update()
     {
         //this.Move();
@@ -36,6 +26,11 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
 
     public Vector3 FindStartingPosition()
     {
+        earth = GameObject.Find("Earth");
+        player = GameObject.Find("Player");
+        this.minDistanceToEarth = 0.5f;
+        this.minDistanceToPlayer = 1f;
+        
         Vector3 earthToPlayerVector = this.player.transform.position - this.earth.transform.position;
 
         Vector3 startingPoint = earthToPlayerVector.normalized * 

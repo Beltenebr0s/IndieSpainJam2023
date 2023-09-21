@@ -9,13 +9,7 @@ public class Misile : MonoBehaviour, IMovingObstacle
     public float force;
     public Vector3 direction;
     public Rigidbody rb;
-    void Start()
-    {
-        earth = GameObject.Find("Earth");
-        player = GameObject.Find("Player");
-        rb = this.GetComponent<Rigidbody>();
-        Throw();
-    }
+
 
     void Update()
     {
@@ -48,6 +42,9 @@ public class Misile : MonoBehaviour, IMovingObstacle
 
     public Vector3 FindStartingPosition()
     {
+        earth = GameObject.Find("Earth");
+        player = GameObject.Find("Player");
+        rb = this.GetComponent<Rigidbody>();
         return earth.transform.position + Vector3.forward * 4f;
     }
     

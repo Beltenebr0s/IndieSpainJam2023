@@ -13,12 +13,7 @@ public class LaserRay : MonoBehaviour, IMovingObstacle
     public float timerToShoot = 0.6f;
     public float tShoot = 0f;
     Vector3 targetPosition = Vector3.zero;
-    void Start()
-    {
-        earth = GameObject.Find("Earth");
-        player = GameObject.Find("Player");
-        FindStartingPosition();
-    }
+    
     void Update()
     {
         Debug.DrawLine(this.transform.position, targetPosition);
@@ -68,6 +63,8 @@ public class LaserRay : MonoBehaviour, IMovingObstacle
 
     public Vector3 FindStartingPosition()
     {
+        earth = GameObject.Find("Earth");
+        player = GameObject.Find("Player");
         return earth.transform.position + Vector3.forward * 4f;
     }
 }

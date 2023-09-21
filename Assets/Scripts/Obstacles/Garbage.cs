@@ -14,16 +14,6 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     private int increm = -1;
     public float force;
 
-    void Start()
-    {
-        earth = GameObject.Find("Earth");
-        player = GameObject.Find("Player");
-        this.minDistanceToEarth = 0.5f;
-        force = forceMax;
-
-        this.transform.position = this.FindStartingPosition();
-    }
-
     void Update()
     {
         this.Move();
@@ -44,6 +34,10 @@ public class Garbage : MonoBehaviour, IIdleObstacle
 
     public Vector3 FindStartingPosition()
     {
+        earth = GameObject.Find("Earth");
+        player = GameObject.Find("Player");
+        this.minDistanceToEarth = 0.5f;
+        force = forceMax;
         Vector3 earthToPlayerVector = this.earth.transform.position - this.player.transform.position;
 
         Vector3 pos = Vector3.one * this.minDistanceToEarth

@@ -9,19 +9,9 @@ public class Satellite : MonoBehaviour, IIdleObstacle
 
     public Vector3 direction;
     private float minDistanceToEarth;
-
-    void Start()
-    {
-        earth = GameObject.Find("Earth");
-        player = GameObject.Find("Player");
-        this.minDistanceToEarth = 0.5f;
-        this.transform.position = this.FindStartingPosition();
-    }
-
     
     void Update()
     {
-        //Debug.Log("Distance: " + (this.earth.transform.position - this.transform.position).magnitude);
         this.Move();
     }
 
@@ -35,6 +25,10 @@ public class Satellite : MonoBehaviour, IIdleObstacle
 
     public Vector3 FindStartingPosition()
     {
+        earth = GameObject.Find("Earth");
+        player = GameObject.Find("Player");
+        this.minDistanceToEarth = 0.5f;
+
         float earthToPlayerDistance = (this.earth.transform.position - this.player.transform.position).magnitude;
         
         Vector3 pos = Random.insideUnitSphere * earthToPlayerDistance + 
