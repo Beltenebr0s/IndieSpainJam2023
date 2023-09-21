@@ -5,21 +5,32 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject tierra;
+
+    public GameController gameControoler;
+
+    [Header("Movement Settings")]
     public float speed = 1;
     public float maxSpeed = 50;
-    public float speedLanzamiento = 20f;
-    public float dashSpeed = 10f;
-    public float aceleration = 0.5f;
+    public float takeoffSpeed = 20f;
+    public float dashAceleration = 10f;
+    public float constantAceleration = 0.5f;
 
+    [System.NonSerialized]
+    public float frustumWidth;
 
-    public bool enCaida = false;
+    private bool enCaida = false;
 
     private Rigidbody playerRB;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = this.GetComponent<Rigidbody>();        
+        playerRB = this.GetComponent<Rigidbody>();
+
+        // se calcula los limites en los que se puede mover el personaje
+        float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);
+        float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.4f * Mathf.Deg2Rad);
+        frustumWidth = frustumHeight / Camera.main.aspect;
     }
     
 
@@ -30,13 +41,11 @@ public class PlayerController : MonoBehaviour
         {
             if (!enCaida)
                 lanzarse();
-            else
-                acelerar(dashSpeed);
         }
 
         if (enCaida)
         {
-            acelerar(aceleration * Time.deltaTime);
+            acelerar(constantAceleration * Time.deltaTime);
 
             // Mira siempre a la tierra
             this.transform.LookAt(tierra.transform.position);
@@ -45,7 +54,7 @@ public class PlayerController : MonoBehaviour
             float xMove = Input.GetAxisRaw("Horizontal");
             float yMove = Input.GetAxisRaw("Vertical");
 
-            // se añade la aceleracion sin que supere un maximo
+            // se aï¿½ade la aceleracion sin que supere un maximo
             float normSpeed = 0.01f;
             if (Mathf.Abs(playerRB.velocity.x + xMove * normSpeed) < maxSpeed)
                 xMove = playerRB.velocity.x + xMove * normSpeed;
@@ -58,11 +67,6 @@ public class PlayerController : MonoBehaviour
 
             // se asigna la aceleracion
             playerRB.velocity = new Vector3(xMove, yMove, playerRB.velocity.z) * speed;
-
-            // se calcula los limites en los que se puede mover el personaje
-            float distanceFromCameraZ = Vector3.Distance(new Vector3(0,0, this.transform.position.z), Camera.main.transform.position);
-            float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.4f * Mathf.Deg2Rad);
-            float frustumWidth = frustumHeight / Camera.main.aspect;
 
             // se comprueba si se traspasan los limites
             Vector3 limPos = transform.position;
@@ -82,8 +86,9 @@ public class PlayerController : MonoBehaviour
 
     public void lanzarse()
     {
+        gameControoler.StartGame(frustumWidth);
         enCaida = true;
-        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, speedLanzamiento);
+        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
     }
 
     public void acelerar(float speedAceleration)
@@ -94,5 +99,11 @@ public class PlayerController : MonoBehaviour
     public void golpe(float fuerzaImpacto)
     {
         acelerar(-fuerzaImpacto);
+    }
+
+    public void EndGame()
+    {
+        enCaida = false;
+        playerRB.velocity = Vector3.zero;
     }
 }
