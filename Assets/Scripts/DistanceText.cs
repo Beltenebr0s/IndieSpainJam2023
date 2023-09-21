@@ -21,5 +21,7 @@ public class DistanceCalculator : MonoBehaviour
         normalizedDistance = Mathf.Clamp01((distance-Earth_radius)/(max_distance-Earth_radius));
 
         distanceText.text = "Distancia: " + (normalizedDistance*384000).ToString("F0") + " KM";
+
+        AudioParameters.Distance = normalizedDistance;
     }
 }
