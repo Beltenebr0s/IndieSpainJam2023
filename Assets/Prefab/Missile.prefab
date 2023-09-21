@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Missile
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7266b16bc179868459c7acc3c9b6da98, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -147,6 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earth: {fileID: 0}
   player: {fileID: 0}
-  force: 0
+  force: 1
   direction: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}

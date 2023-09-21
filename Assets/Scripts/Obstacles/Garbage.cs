@@ -30,7 +30,10 @@ public class Garbage : MonoBehaviour, IIdleObstacle
         force += change * increm;
     }
 
-    public void DamagePlayer(int damageValue){}
+    public void DamagePlayer(int damageValue)
+    {
+        player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
+    }
 
     public Vector3 FindStartingPosition()
     {
@@ -45,5 +48,20 @@ public class Garbage : MonoBehaviour, IIdleObstacle
                      + Vector3.right * Random.Range(-10, 10);
         
         return pos;
+    }
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DamagePlayer(1);
+            
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            // Audio
+            Destroy(collision.gameObject);
+        }
+        Destroy(this.gameObject);
     }
 }

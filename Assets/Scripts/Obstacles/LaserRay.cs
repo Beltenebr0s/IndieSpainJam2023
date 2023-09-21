@@ -59,12 +59,30 @@ public class LaserRay : MonoBehaviour, IMovingObstacle
         runAimTimer = true;
     }
 
-    public void DamagePlayer(int damageValue){}
+    public void DamagePlayer(int damageValue)
+    {
+        player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
+    }
 
     public Vector3 FindStartingPosition()
     {
         earth = GameObject.Find("Earth");
         player = GameObject.Find("Player");
         return earth.transform.position + Vector3.forward * 4f;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DamagePlayer(1);
+            
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            // Audio
+            Destroy(collision.gameObject);
+        }
+        Destroy(this.gameObject);
     }
 }

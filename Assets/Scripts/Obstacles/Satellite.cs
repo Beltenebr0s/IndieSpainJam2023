@@ -21,7 +21,11 @@ public class Satellite : MonoBehaviour, IIdleObstacle
         this.transform.RotateAround(earth.transform.position, direction, 50 * Time.deltaTime);
     }
 
-    public void DamagePlayer(int damageValue){}
+    public void DamagePlayer(int damageValue)
+    {
+        player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
+        // Audio
+    }
 
     public Vector3 FindStartingPosition()
     {
@@ -37,5 +41,20 @@ public class Satellite : MonoBehaviour, IIdleObstacle
         this.direction = new Vector3(Random.value, Random.value, Random.value).normalized;
         
         return pos;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DamagePlayer(1);
+            
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            // Audio
+            Destroy(collision.gameObject);
+        }
+        Destroy(this.gameObject);
     }
 }

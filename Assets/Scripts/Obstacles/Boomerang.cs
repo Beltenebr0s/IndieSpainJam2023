@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour, IMovingObstacle
 {
+    public GameObject earth;
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,29 @@ public class Boomerang : MonoBehaviour, IMovingObstacle
 
     public void Throw(){}
 
-    public void DamagePlayer(int damageValue){}
+    public void DamagePlayer(int damageValue)
+    {
+        player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
+    }
 
-    public Vector3 FindStartingPosition(){return Vector3.zero;}
+    public Vector3 FindStartingPosition()
+    {
+        earth = GameObject.Find("Earth");
+        player = GameObject.Find("Player");
+        return Vector3.zero;
+    }
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DamagePlayer(1);
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            // Audio
+            Destroy(collision.gameObject);
+        }
+        Destroy(this.gameObject);
+    }
 }
