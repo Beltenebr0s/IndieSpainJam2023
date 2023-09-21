@@ -7,7 +7,7 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
     public GameObject earth;
     public GameObject player;
 
-    public float speed;
+    public float speed = 5f;
     public Vector3 direction;
     public float minDistanceToEarth;
     public float minDistanceToPlayer;
@@ -35,9 +35,9 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         this.minDistanceToPlayer = 1f;
         
         Vector3 earthToPlayerVector = this.player.transform.position - this.earth.transform.position;
-
+        Debug.Log("Distancia a la tierra: " + earthToPlayerVector.magnitude);
         Vector3 startingPoint = earthToPlayerVector.normalized * 
-                                Random.Range(minDistanceToEarth, earthToPlayerVector.magnitude - minDistanceToPlayer);
+                                Random.Range(minDistanceToEarth, earthToPlayerVector.magnitude / 2 - minDistanceToPlayer);
 
         direction = Random.value <= 0.5 ? Vector3.left : Vector3.right;
 

@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    GameObject player;
+    List<GameObject> activeObstacles;
+
+    [Header("Spawn Settings")]
     public float timerToSpawn = 5f;
     public float tSpawn = 0f;
     public Transform spawnPosition;
+
+    public float timerToDespawn = 3;
+    public float tDespawn = 0f;
     [Header("Idle Obstacles")]
     public GameObject prefabAsteroid;
     public GameObject prefabGarbage;
@@ -19,11 +26,17 @@ public class ObstacleSpawner : MonoBehaviour
     
     void Start()
     {
+        activeObstacles = new List<GameObject>();
+        player = GameObject.Find("Player");
         tSpawn = 0f;
     }
 
     void Update()
     {
+        if (!player.GetComponent<PlayerController>().enCaida)
+        {
+            return;
+        }
         if (tSpawn >= timerToSpawn)
         {
             if (Random.value <= 0.5f)
@@ -37,6 +50,15 @@ public class ObstacleSpawner : MonoBehaviour
             tSpawn = 0f;
         }
         tSpawn += Time.deltaTime;
+
+        if (tDespawn >= timerToDespawn)
+        {
+            GameObject go = activeObstacles[0];
+            Destroy(go);
+            activeObstacles.RemoveAt(0);
+            tDespawn = 0f;
+        }
+        tDespawn += Time.deltaTime;
     }
 
     public void CreateMovingObstacle()
@@ -58,6 +80,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         newObstacle.transform.position = newObstacle.GetComponent<IMovingObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IMovingObstacle>().Throw();
+        activeObstacles.Add(newObstacle);
     }
 
     public void CreateIdleObstacle()
@@ -78,6 +101,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
+        activeObstacles.Add(newObstacle);
     }
 
 }

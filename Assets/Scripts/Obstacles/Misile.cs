@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Misile : MonoBehaviour, IMovingObstacle
 {
+
     public GameObject earth;
     public GameObject player;
     public float force;
@@ -50,6 +51,11 @@ public class Misile : MonoBehaviour, IMovingObstacle
     }
     public void DamagePlayer(int damageValue)
     {
+        if ( player == null )
+        {
+            Debug.Log("Dónde está el jugador >:(");
+            player = GameObject.Find("Player");
+        }
         player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
     }
 

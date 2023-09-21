@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public GameObject gameController;
+    public GameController gameController;
     public float maxHealth = 100;
     public float currentHealth;
 
     void Start()
     {
-        gameController = GameObject.Find("GameController");
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         InitHealth();
     }
 
@@ -29,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Muero");
+            gameController.EndGame();
         }
     }
 }

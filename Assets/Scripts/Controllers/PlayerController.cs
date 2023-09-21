@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public float frustumWidth;
 
-    private bool enCaida = false;
+    public bool enCaida = false;
 
     private Rigidbody playerRB;
 
