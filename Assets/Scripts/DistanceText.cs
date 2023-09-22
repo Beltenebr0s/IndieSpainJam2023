@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class DistanceCalculator : MonoBehaviour
 {
     public Transform targetObject;
-    public Text distanceText;
+    public Slider slider;
     public float normalizedDistance;
     private float Earth_radius;
     private float max_distance;
@@ -20,7 +20,7 @@ public class DistanceCalculator : MonoBehaviour
 
         normalizedDistance = Mathf.Clamp01((distance-Earth_radius)/(max_distance-Earth_radius));
 
-        distanceText.text = "Distancia: " + (normalizedDistance*384000).ToString("F0") + " KM";
+        slider.value = normalizedDistance;
 
         AudioParameters.Distance = normalizedDistance;
     }
