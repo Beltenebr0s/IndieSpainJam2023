@@ -63,12 +63,11 @@ public class GameController : MonoBehaviour
         boost.transform.position = new Vector3(x, y, z);
     }
 
-    public void StartGame(float frustumWidth)
+    public void StartGame()
     {
         Debug.Log("Start Game");
         startGame = true;
         earth.GetComponent<PlanetController>().StartGame();
-        this.frustumWidth = frustumWidth;
     }
 
     public void EndGame()

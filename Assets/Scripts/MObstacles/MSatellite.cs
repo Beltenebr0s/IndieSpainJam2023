@@ -13,7 +13,6 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
     public float minSpeed = 30f;
     public float maxSpeed = 70f;
     private float speed;
-    private float minDistanceToEarth;
 
     public float minSize = 0.1f;
     public float maxSize = 0.7f;
@@ -53,9 +52,9 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
         this.transform.RotateAround(earth.transform.position, direction, speed * Time.deltaTime);
     }
 
-    public void DamagePlayer(int damageValue)
+    public void DamagePlayer(int force)
     {
-        player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
+        player.GetComponent<PlayerController>().hitPlayer(force);
         // Audio
     }
 
@@ -63,13 +62,16 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
     {
         earth = GameObject.Find("Earth");
         player = GameObject.Find("Player");
-        this.minDistanceToEarth = 0.5f;
 
         float earthToPlayerDistance = (this.earth.transform.position - this.player.transform.position).magnitude;
 
         gameController = GameObject.Find("GameController");
         float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
         Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), Random.Range(player.transform.position.z + 10, earth.transform.position.z - 3));
+        Debug.Log("Satellite position: " + pos);
+        Debug.Log(frustumWidth);
+        Debug.Log(Random.Range(-frustumWidth, frustumWidth));
+
 
         this.direction = new Vector3(Random.value, Random.value, Random.value).normalized;
         speed = Mathf.Sign(Random.Range(-1f, 1f)) * Random.Range(minSpeed, maxSpeed);

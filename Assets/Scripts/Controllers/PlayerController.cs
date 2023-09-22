@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRB;
 
+    [Header("Para debug <3")]
+    public float velocity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +34,14 @@ public class PlayerController : MonoBehaviour
         float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);
         float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.4f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight / Camera.main.aspect;
+        gameControoler.frustumWidth = frustumWidth;
     }
     
 
     // Update is called once per frame
     void Update()
     {
+        velocity = playerRB.velocity.z;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!enCaida)
@@ -86,19 +91,20 @@ public class PlayerController : MonoBehaviour
 
     public void lanzarse()
     {
-        gameControoler.StartGame(frustumWidth);
+        gameControoler.StartGame();
         enCaida = true;
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
     }
 
     public void acelerar(float speedAceleration)
     {
+        float zVelocity = Mathf.Clamp(playerRB.velocity.z + speedAceleration, 0, maxSpeed);
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, playerRB.velocity.z + speedAceleration);
     }
 
-    public void golpe(float fuerzaImpacto)
+    public void hitPlayer(float force)
     {
-        acelerar(-fuerzaImpacto);
+        acelerar(-force * 2);
     }
 
     public void EndGame()
