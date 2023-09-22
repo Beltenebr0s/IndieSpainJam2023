@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float speed = 1;
+    public float maneuverSpeed = 0.05f;
     public float maxSpeed = 50;
     public float takeoffSpeed = 20f;
     public float dashAceleration = 10f;
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRB;
 
+    [Header("Para debug <3")]
+    public float velocity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,14 +33,16 @@ public class PlayerController : MonoBehaviour
 
         // se calcula los limites en los que se puede mover el personaje
         float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);
-        float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.4f * Mathf.Deg2Rad);
+        float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight / Camera.main.aspect;
+        gameControoler.frustumWidth = frustumWidth;
     }
     
 
     // Update is called once per frame
     void Update()
     {
+        velocity = playerRB.velocity.z;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!enCaida)
@@ -55,13 +61,12 @@ public class PlayerController : MonoBehaviour
             float yMove = Input.GetAxisRaw("Vertical");
 
             // se a�ade la aceleracion sin que supere un maximo
-            float normSpeed = 0.01f;
-            if (Mathf.Abs(playerRB.velocity.x + xMove * normSpeed) < maxSpeed)
-                xMove = playerRB.velocity.x + xMove * normSpeed;
+            if (Mathf.Abs(playerRB.velocity.x + xMove * maneuverSpeed) < maxSpeed)
+                xMove = playerRB.velocity.x + xMove * maneuverSpeed;
             else
                 xMove = maxSpeed;
-            if (Mathf.Abs(playerRB.velocity.y + yMove * normSpeed) < maxSpeed)
-                yMove = playerRB.velocity.y + yMove * normSpeed;
+            if (Mathf.Abs(playerRB.velocity.y + yMove * maneuverSpeed) < maxSpeed)
+                yMove = playerRB.velocity.y + yMove * maneuverSpeed;
             else
                 yMove = maxSpeed;
 
@@ -86,19 +91,20 @@ public class PlayerController : MonoBehaviour
 
     public void lanzarse()
     {
-        gameControoler.StartGame(frustumWidth);
+        gameControoler.StartGame();
         enCaida = true;
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
     }
 
     public void acelerar(float speedAceleration)
     {
+        float zVelocity = Mathf.Clamp(playerRB.velocity.z + speedAceleration, 0, maxSpeed);
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, playerRB.velocity.z + speedAceleration);
     }
 
-    public void golpe(float fuerzaImpacto)
+    public void hitPlayer(float force)
     {
-        acelerar(-fuerzaImpacto);
+        acelerar(-force * 2);
     }
 
     public void EndGame()

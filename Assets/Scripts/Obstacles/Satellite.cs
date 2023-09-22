@@ -8,7 +8,6 @@ public class Satellite : MonoBehaviour, IIdleObstacle
     public GameObject player;
 
     public Vector3 direction;
-    private float minDistanceToEarth;
     
     void Update()
     {
@@ -31,7 +30,6 @@ public class Satellite : MonoBehaviour, IIdleObstacle
     {
         earth = GameObject.Find("Earth");
         player = GameObject.Find("Player");
-        this.minDistanceToEarth = 0.5f;
 
         float earthToPlayerDistance = (this.earth.transform.position - this.player.transform.position).magnitude;
         

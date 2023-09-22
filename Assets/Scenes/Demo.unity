@@ -390,7 +390,7 @@ Transform:
   m_GameObject: {fileID: 350411691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -109.83}
+  m_LocalPosition: {x: 0, y: 0, z: -279.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -483,11 +483,13 @@ MonoBehaviour:
   tierra: {fileID: 419061221}
   gameControoler: {fileID: 2051046470}
   speed: 1
+  maneuverSpeed: 0.05
   maxSpeed: 100
   takeoffSpeed: 5
   dashAceleration: 10
-  constantAceleration: 0.5
+  constantAceleration: 2
   enCaida: 0
+  velocity: 0
 --- !u!54 &350411697
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -727,8 +729,8 @@ MonoBehaviour:
   tSpawn: 0
   spawnPosition: {fileID: 811441881}
   timerToDespawn: 1e+9
-  satelliteAmount: 100
-  prefabAsteroid: {fileID: 4842401025730016251, guid: dbd539e1b39143841a6fbc56ce513786, type: 3}
+  satelliteAmount: 0
+  prefabAsteroid: {fileID: 4842401025730016251, guid: ad9127628abccd04cac9c1acc42300aa, type: 3}
   prefabGarbage: {fileID: 3704254318029904476, guid: 0ea04fa9f03cc47468d7f538cc8a557a, type: 3}
   prefabSatellite: {fileID: 4004723684304809249, guid: 9713d3b2c95d8e94e9d4fec2d8613d3b, type: 3}
   prefabLaser: {fileID: 858287344271248579, guid: 93225b8f6c14fa643b9ad7c5ff19ef7d, type: 3}
@@ -762,7 +764,7 @@ Transform:
   m_GameObject: {fileID: 2034260926}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -113.83}
+  m_LocalPosition: {x: 0, y: 0, z: -283.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
