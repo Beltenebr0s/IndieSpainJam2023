@@ -30,6 +30,11 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        Debug.DrawLine(new Vector3(-frustumWidth, -frustumWidth, player.transform.position.z), new Vector3(frustumWidth, -frustumWidth, player.transform.position.z), Color.red);
+        Debug.DrawLine(new Vector3(-frustumWidth, frustumWidth, player.transform.position.z), new Vector3(frustumWidth, frustumWidth, player.transform.position.z), Color.red);
+        Debug.DrawLine(new Vector3(-frustumWidth, -frustumWidth, player.transform.position.z), new Vector3(-frustumWidth, frustumWidth, player.transform.position.z), Color.red);
+        Debug.DrawLine(new Vector3(frustumWidth, -frustumWidth, player.transform.position.z), new Vector3(frustumWidth, frustumWidth, player.transform.position.z), Color.red);
+
         if (startGame)
         {
             timeSinceLastBoosts += Time.deltaTime;
@@ -42,10 +47,10 @@ public class GameController : MonoBehaviour
 
     private void addBoost()
     {
-        Debug.Log("Spawn Boost");
         timeSinceLastBoosts = 0;
         timeToNextBoosts = Random.Range(minTimeBetweenBoosts, maxTimeBetweenBoosts);
         GameObject boost = Instantiate(boostsList[Random.Range(0, boostsList.Count)]);
+        boost.transform.parent = this.transform;
         locateBoost(boost);
     }
 
@@ -54,7 +59,7 @@ public class GameController : MonoBehaviour
 
         float x = Random.Range(-frustumWidth, frustumWidth);
         float y = Random.Range(-frustumWidth, frustumWidth);
-        float z = Random.Range(player.transform.position.z + 10, player.transform.position.z + 20);
+        float z = Random.Range(player.transform.position.z + 50, player.transform.position.z + 100);
         boost.transform.position = new Vector3(x, y, z);
     }
 

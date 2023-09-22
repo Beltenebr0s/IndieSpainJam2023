@@ -11,9 +11,9 @@ public class ObstacleSpawner : MonoBehaviour
     public float timerToSpawn = 5f;
     public float tSpawn = 0f;
     public Transform spawnPosition;
-
     public float timerToDespawn = 3;
-    public float tDespawn = 0f;
+    //public float tDespawn = 0f;
+
     [Header("Idle Obstacles")]
     public GameObject prefabAsteroid;
     public GameObject prefabGarbage;
@@ -51,6 +51,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
         tSpawn += Time.deltaTime;
 
+        /*
         if (tDespawn >= timerToDespawn)
         {
             GameObject go = activeObstacles[0];
@@ -58,9 +59,9 @@ public class ObstacleSpawner : MonoBehaviour
             activeObstacles.RemoveAt(0);
             tDespawn = 0f;
         }
-        tDespawn += Time.deltaTime;
+        tDespawn += Time.deltaTime;*/
     }
-
+    
     public void CreateMovingObstacle()
     {
         float randomNumber = Random.value;
@@ -81,6 +82,8 @@ public class ObstacleSpawner : MonoBehaviour
         newObstacle.transform.position = newObstacle.GetComponent<IMovingObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IMovingObstacle>().Throw();
         activeObstacles.Add(newObstacle);
+        newObstacle.transform.parent = this.transform;
+        StartCoroutine(DestroyObstacle(newObstacle));
     }
 
     public void CreateIdleObstacle()
@@ -102,6 +105,15 @@ public class ObstacleSpawner : MonoBehaviour
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
         activeObstacles.Add(newObstacle);
+        newObstacle.transform.parent = this.transform;
+        StartCoroutine(DestroyObstacle(newObstacle));
+    }
+
+    IEnumerator DestroyObstacle(GameObject obstacle)
+    {
+        yield return new WaitForSeconds(timerToDespawn);
+        activeObstacles.Remove(obstacle);
+        Destroy(obstacle);
     }
 
 }

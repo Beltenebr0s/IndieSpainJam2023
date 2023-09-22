@@ -63,7 +63,6 @@ public class Misile : MonoBehaviour, IMovingObstacle
     {
         earth = GameObject.Find("Earth");
         player = GameObject.Find("Player");
-        Debug.Log("Hola??");
         rb = this.GetComponent<Rigidbody>();
         return earth.transform.position - Vector3.forward * 4f;
     }
