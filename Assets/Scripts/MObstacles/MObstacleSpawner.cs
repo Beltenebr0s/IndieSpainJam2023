@@ -113,6 +113,14 @@ public class MObstacleSpawner : MonoBehaviour
         satellites.Add(newObstacle);
         newObstacle.transform.parent = this.transform;
     }
+    private void CreateAsteroid()
+    {
+        GameObject newObstacle = GameObject.Instantiate(prefabAsteroid, spawnPosition.position, Quaternion.identity);
+        newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
+        newObstacle.GetComponent<IIdleObstacle>().Move();
+        satellites.Add(newObstacle);
+        newObstacle.transform.parent = this.transform;
+    }
 
     IEnumerator DestroyObstacle(GameObject obstacle)
     {
