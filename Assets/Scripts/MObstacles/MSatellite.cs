@@ -41,6 +41,10 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
             this.GetComponent<Renderer>().material.color = Color.white;
             near = false;
         }
+        else if(this.transform.position.z < player.transform.position.z)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Move()
@@ -62,11 +66,13 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
         this.minDistanceToEarth = 0.5f;
 
         float earthToPlayerDistance = (this.earth.transform.position - this.player.transform.position).magnitude;
-        
-        Vector3 pos = this.earth.transform.position + Random.insideUnitSphere * earthToPlayerDistance * 2;
+
+        gameController = GameObject.Find("GameController");
+        float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
+        Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), Random.Range(player.transform.position.z + 10, earth.transform.position.z - 3));
 
         this.direction = new Vector3(Random.value, Random.value, Random.value).normalized;
-        speed = Random.Range(minSpeed, maxSpeed);
+        speed = Mathf.Sign(Random.Range(-1f, 1f)) * Random.Range(minSpeed, maxSpeed);
 
         this.transform.localScale = Vector3.one * Random.Range(minSize, maxSize);
 
@@ -78,7 +84,6 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
         if (collision.gameObject.CompareTag("Player"))
         {
             DamagePlayer(1);
-            
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
