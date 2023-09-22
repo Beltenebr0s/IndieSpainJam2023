@@ -415,6 +415,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4842401025730016251, guid: dbd539e1b39143841a6fbc56ce513786, type: 3}
     - target: {fileID: 8434447404914293927, guid: 569accb1dc263234ebbc3671bed7c5af, type: 3}
+      propertyPath: timerToDespawn
+      value: 10000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434447404914293927, guid: 569accb1dc263234ebbc3671bed7c5af, type: 3}
       propertyPath: prefabBoomerang
       value: 
       objectReference: {fileID: 2010337584049232749, guid: a3e27cc76d5096346a0266097b459f52, type: 3}
@@ -800,8 +804,8 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2114456783}
   - {fileID: 1629956825}
+  - {fileID: 2114456783}
   - {fileID: 288157883}
   - {fileID: 425594933}
   - {fileID: 1219893040}
