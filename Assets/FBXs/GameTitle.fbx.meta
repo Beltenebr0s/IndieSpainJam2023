@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8331fa5e80ebe6946a7eedc1b2cfa2c0
+guid: 4575e51e7134b2340924d2372ae5d13b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,9 +33,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature.003|Asteroid 2
-      takeName: Armature.003|Asteroid 2
-      internalID: 7448803926835683817
+      name: Title| Iddle
+      takeName: Armature.004|Moon Landing Iddle
+      internalID: -8228051355722433786
       firstFrame: 0
       lastFrame: 49
       wrapMode: 0
@@ -62,9 +62,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.003|Asteroid1
-      takeName: Armature.003|Asteroid1
-      internalID: 9151791787751195319
+      name: Title| Roll Iddle
+      takeName: Armature.004|Moon Landing RollIddle
+      internalID: 8639460815705144232
       firstFrame: 0
       lastFrame: 49
       wrapMode: 0
@@ -73,7 +73,36 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Title| Play
+      takeName: Armature.004|MoonLanding Play
+      internalID: -4732743601653049197
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
