@@ -17,10 +17,14 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
 
     private bool passNearPlayer = false;
 
+    private ObjectAudio objectAudio;
+
     void Start()
     {
         this.GetComponent<Renderer>().material.color = Color.magenta;
         player = GameObject.Find("Player");
+
+        objectAudio = GetComponent<ObjectAudio>();
     }
 
     void Update()
@@ -90,13 +94,13 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
 
     public void Collision(Collider collider)
     {
+        objectAudio.PlayImpactAudio();
         if (collider.gameObject.CompareTag("Player"))
         {
             DamagePlayer(1);
         }
         else if (collider.gameObject.CompareTag("Obstacle"))
         {
-            // Audio
             Destroy(collider.gameObject);
         }
         Destroy(this.gameObject);

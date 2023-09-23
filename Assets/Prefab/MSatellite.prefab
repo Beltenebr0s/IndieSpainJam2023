@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1810728291752508821}
   - component: {fileID: 6533088250124220994}
   - component: {fileID: 8736755335792567469}
-  - component: {fileID: 4865960949998984082}
+  - component: {fileID: -6258383431722797111}
   - component: {fileID: 4717818168140066015}
   - component: {fileID: 8874872984299459987}
   - component: {fileID: 930101926982763199}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warmUi: {fileID: 2512724413364498017, guid: 49215336e4563464ea097f07f3e99537, type: 3}
---- !u!114 &4865960949998984082
+--- !u!114 &-6258383431722797111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,28 +136,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4004723684304809249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: fb8ac64945c2cb94ba56194ba36a1fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
+  sustainAudio:
     Guid:
       Data1: 935227324
       Data2: 1163342215
       Data3: -1360687228
       Data4: 105962274
     Path: event:/SFX/Obstacles/Satellite
-  Event: 
-  PlayEvent: 1
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 60
+  impactAudio:
+    Guid:
+      Data1: -508663046
+      Data2: 1231125575
+      Data3: 917891459
+      Data4: 1537306496
+    Path: event:/SFX/Obstacles/Satellite dest
 --- !u!135 &4717818168140066015
 SphereCollider:
   m_ObjectHideFlags: 0

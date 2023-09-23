@@ -19,11 +19,14 @@ public class Satellite : MonoBehaviour, IIdleObstacle
     
     private bool near = false;
 
+    private ObjectAudio objectAudio;
+
     void Start()
     {
         gameController = GameObject.Find("GameController");
         earth = GameObject.Find("Earth");
         player = GameObject.Find("Player");
+        objectAudio = GetComponent<ObjectAudio>();
     }
 
     void Update()
@@ -51,7 +54,7 @@ public class Satellite : MonoBehaviour, IIdleObstacle
     public void DamagePlayer(int force)
     {
         player.GetComponent<PlayerController>().hitPlayer(force);
-        // Audio
+        objectAudio.PlayImpactAudio();
     }
 
     public Vector3 FindStartingPosition()

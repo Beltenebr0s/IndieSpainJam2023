@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 457913897831042169}
   - component: {fileID: 5246846880719291091}
   - component: {fileID: 8353079215174382368}
+  - component: {fileID: -7504535455761297987}
   m_Layer: 0
   m_Name: MAsteroid
   m_TagString: Untagged
@@ -117,6 +118,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warmUi: {fileID: 2512724413364498017, guid: 49215336e4563464ea097f07f3e99537, type: 3}
+--- !u!114 &-7504535455761297987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842401025730016251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8ac64945c2cb94ba56194ba36a1fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sustainAudio:
+    Guid:
+      Data1: -2017005989
+      Data2: 1271200014
+      Data3: -1199308401
+      Data4: 741097756
+    Path: event:/SFX/Obstacles/Asteroid
+  impactAudio:
+    Guid:
+      Data1: -1020779990
+      Data2: 1224676867
+      Data3: -1571817338
+      Data4: 1441791136
+    Path: event:/SFX/Obstacles/Asteroid dest
 --- !u!1001 &3092537191831118182
 PrefabInstance:
   m_ObjectHideFlags: 0

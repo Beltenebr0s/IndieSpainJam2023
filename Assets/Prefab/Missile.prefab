@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7266b16bc179868459c7acc3c9b6da98, type: 3}
       insertIndex: -1
       addedObject: {fileID: 26614201416644333}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7266b16bc179868459c7acc3c9b6da98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5365578337041561815}
   m_SourcePrefab: {fileID: 100100000, guid: 7266b16bc179868459c7acc3c9b6da98, type: 3}
 --- !u!1 &2010337584049232749 stripped
 GameObject:
@@ -155,3 +158,29 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   finalposition: {x: 0, y: 0, z: 0}
+--- !u!114 &5365578337041561815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010337584049232749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8ac64945c2cb94ba56194ba36a1fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sustainAudio:
+    Guid:
+      Data1: 881040661
+      Data2: 1153521903
+      Data3: 173667754
+      Data4: 1724832265
+    Path: event:/SFX/Obstacles/Rocket
+  impactAudio:
+    Guid:
+      Data1: -1922009359
+      Data2: 1105414863
+      Data3: 308798089
+      Data4: 1140548822
+    Path: event:/SFX/Obstacles/Rocket dest
