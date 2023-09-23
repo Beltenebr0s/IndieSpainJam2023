@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -30,9 +31,21 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private List<GameObject> boostsList;
 
+    // Por si acaso la escena muere cuando haga commit, meted esto por el editor <3
+    [Header("UI")]
+    public List<RawImage> triesList; 
+    public Texture tryIconEnabled;
+    public Texture tryIconDisabled;
+
+    public float score;
+
     private void Start()
     {
         RestartGame();
+        foreach(RawImage img in triesList)
+        {
+            img.texture = tryIconEnabled;
+        }
         timeToNextBoosts = Random.Range(minTimeBetweenBoosts, maxTimeBetweenBoosts);
     }
 
@@ -77,16 +90,21 @@ public class GameController : MonoBehaviour
         boost.transform.position = new Vector3(x, y, z);
     }
 
+    public void AddScore(float x)
+    {
+        score += x;
+    }
     public void EndTurn()
     {
         startGame = false;
-        Debug.Log("Ended turn: " + currentTry);
-        if (currentTry >= numTries)
+        //Debug.Log("Ended turn: " + currentTry);
+        if (currentTry >= numTries-1)
         {
             EndGame();
         }
         else
         {
+            triesList[currentTry].texture = tryIconDisabled;
             RestartGame();
         }
         currentTry++;
@@ -94,7 +112,7 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
-        Debug.Log("Start Game");
+        //Debug.Log("Start Game");
         player.transform.position = initialPlayerPosition.position;
         player.GetComponent<PlayerController>().Reset();
         earth.transform.position = initialEarthPosition.position;
@@ -104,7 +122,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("End Game");
+        //Debug.Log("End Game");
         startGame = false;
         endGame = true;
         player.GetComponent<PlayerController>().EndGame();

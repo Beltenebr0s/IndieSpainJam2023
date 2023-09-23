@@ -9,21 +9,30 @@ public class PlanetController : MonoBehaviour
 
     public GameController gameController;
 
+    public float maxHealth = 1000;
+    public float health;
 
-    private void Start()
+    void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        health = maxHealth;
     }
 
     public void StartGame()
     {
         startGame = true;
+        // Cambiar aspecto de la tierra según la vida que le quede
+        // if (health <= secondHealthThreshold)
+        // {
+
+        // }
+        // else if (health <= firstHealthThresHold)
+        // {
+
+        // }
+        // else
+        // {
+
+        // }
     }
 
     public void EndGame()
@@ -33,12 +42,16 @@ public class PlanetController : MonoBehaviour
         gameController.EndTurn();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void HandleCollision(bool earthWasHit, GameObject player)
     {
-        if (other.CompareTag("Player"))
+        if (earthWasHit)
         {
-            Debug.Log("Llegó a la tierra");
-            EndGame();
+            float hitSpeed = player.GetComponent<Rigidbody>().velocity.magnitude;
+            Debug.Log("Daño: " + hitSpeed);
+            health -= hitSpeed;
+            gameController.AddScore(hitSpeed);
         }
+        EndGame();
     }
+
 }
