@@ -6,6 +6,7 @@ public class Garbage : MonoBehaviour, IIdleObstacle
 {
     public GameObject earth;
     public GameObject player;
+    public GameObject gameController;
 
     private float minDistanceToEarth;
 
@@ -17,6 +18,11 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     void Update()
     {
         this.Move();
+
+        if (this.transform.position.z < player.transform.position.z - 10)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Move()
@@ -39,13 +45,16 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     {
         earth = GameObject.Find("Earth");
         player = GameObject.Find("Player");
-        this.minDistanceToEarth = 0.5f;
-        force = forceMax;
-        Vector3 earthToPlayerVector = this.earth.transform.position - this.player.transform.position;
+        gameController = GameObject.Find("GameController");
+        float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
 
-        Vector3 pos = Vector3.one * this.minDistanceToEarth
-                     + Random.Range (0, 1) * earthToPlayerVector 
-                     + Vector3.right * Random.Range(-10, 10);
+        force = forceMax;
+
+        float x = Random.Range(-frustumWidth, frustumWidth);
+        float y = Random.Range(-frustumWidth, frustumWidth);
+        float z = Random.Range(player.transform.position.z + 20f, player.transform.position.z + 30f);
+
+        Vector3 pos = new Vector3(x, y, z);
         
         return pos;
     }
