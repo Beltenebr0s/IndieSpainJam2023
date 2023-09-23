@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 
     public GameObject earth;
     public GameObject player;
+    public GameObject pauseMenu;
 
     [Header("Boosts Settings")]
     [SerializeField]
@@ -42,6 +43,12 @@ public class GameController : MonoBehaviour
             {
                 addBoost();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("pause Game");
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
