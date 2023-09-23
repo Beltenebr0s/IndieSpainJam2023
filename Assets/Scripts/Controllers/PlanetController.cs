@@ -30,13 +30,14 @@ public class PlanetController : MonoBehaviour
     {
         startGame = false;
         endGame = true;
-        gameController.EndGame();
+        gameController.EndTurn();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Llegó a la tierra");
             EndGame();
         }
     }

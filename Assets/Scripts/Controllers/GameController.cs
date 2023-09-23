@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private bool startGame = false;
+    public bool startGame = false;
     private bool endGame = false;
+
+    [Header("LevelSettings")]
+    public int numTries = 3;
+    public int currentTry = 0;
+    public Transform initialPlayerPosition;
+    public Transform initialEarthPosition;
 
     [System.NonSerialized]
     public float frustumWidth;
@@ -26,6 +32,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        RestartGame();
         timeToNextBoosts = Random.Range(minTimeBetweenBoosts, maxTimeBetweenBoosts);
     }
 
@@ -70,9 +77,27 @@ public class GameController : MonoBehaviour
         boost.transform.position = new Vector3(x, y, z);
     }
 
-    public void StartGame()
+    public void EndTurn()
+    {
+        startGame = false;
+        Debug.Log("Ended turn: " + currentTry);
+        if (currentTry >= numTries)
+        {
+            EndGame();
+        }
+        else
+        {
+            RestartGame();
+        }
+        currentTry++;
+    }
+
+    public void RestartGame()
     {
         Debug.Log("Start Game");
+        player.transform.position = initialPlayerPosition.position;
+        player.GetComponent<PlayerController>().Reset();
+        earth.transform.position = initialEarthPosition.position;
         startGame = true;
         earth.GetComponent<PlanetController>().StartGame();
     }
@@ -83,5 +108,6 @@ public class GameController : MonoBehaviour
         startGame = false;
         endGame = true;
         player.GetComponent<PlayerController>().EndGame();
+        // Gameover Screen
     }
 }

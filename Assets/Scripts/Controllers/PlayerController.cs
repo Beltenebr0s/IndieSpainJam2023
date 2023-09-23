@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRB = this.GetComponent<Rigidbody>();
-
         // se calcula los limites en los que se puede mover el personaje
         float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);
         float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
@@ -46,7 +45,7 @@ public class PlayerController : MonoBehaviour
         velocity = playerRB.velocity.z;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!enCaida)
+            if (!enCaida && gameControoler.startGame)
                 lanzarse();
         }
 
@@ -98,9 +97,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        playerRB.velocity = Vector3.zero;
+        enCaida = false;
+    }
     public void lanzarse()
     {
-        gameControoler.StartGame();
+        gameControoler.RestartGame();
         enCaida = true;
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
     }
