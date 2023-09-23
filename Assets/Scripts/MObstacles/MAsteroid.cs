@@ -31,9 +31,9 @@ public class MAsteroid : MonoBehaviour, IIdleObstacle
     public void Move()
     {
         // en caso de que este lejos del jugador
-        if(!passNearPlayer && Vector3.Distance(this.transform.position, this.player.transform.position) > 50f)
+        if(!passNearPlayer && Vector3.Distance(this.transform.position, this.player.transform.position) > 20f)
         {
-            playerPos = this.player.transform.position + new Vector3(0,0, this.player.GetComponent<Rigidbody>().velocity.z * 0.7f);
+            playerPos = this.player.transform.position;
             direction = (playerPos - this.transform.position).normalized;
         }
         // en caso de que este cerca del jugador por primera vez
@@ -46,12 +46,8 @@ public class MAsteroid : MonoBehaviour, IIdleObstacle
         {
             Destroy(this.gameObject);
         }
-        // en caso de que este cerca del jugador
-        else
-        {
-            playerPos.z = this.player.transform.position.z + this.player.GetComponent<Rigidbody>().velocity.z * 0.7f;
-        }
         this.transform.position += direction * speed * Time.deltaTime;
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.player.transform.position.z);
     }
 
     public void DamagePlayer(int force)
@@ -67,7 +63,7 @@ public class MAsteroid : MonoBehaviour, IIdleObstacle
         this.minDistanceToPlayer = 1f;
         
         // se calcula la posicion en la que aparecera el obstaculo
-        float zPosition = player.transform.position.z + 50f;
+        float zPosition = player.transform.position.z + 70f;
 
         // se calcula el frustum
         float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);

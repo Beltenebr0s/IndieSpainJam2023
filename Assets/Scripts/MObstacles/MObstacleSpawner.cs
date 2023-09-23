@@ -38,6 +38,7 @@ public class MObstacleSpawner : MonoBehaviour
         {
             CreateSatellite();
         }
+        
     }
 
     void Update()
