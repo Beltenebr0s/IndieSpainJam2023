@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4375098710310664782}
-  - component: {fileID: 9125207881803814628}
   - component: {fileID: 2268129027745828542}
   m_Layer: 0
   m_Name: AudioController
@@ -33,24 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9125207881803814628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5957466745549749958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadEvent: 1
-  UnloadEvent: 0
-  Banks:
-  - Desktop/Master
-  CollisionTag: 
-  PreloadSamples: 0
 --- !u!114 &2268129027745828542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cd751402a8b0143a7981fd665fcdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainBank: Desktop/Master
   gameplayMusic:
     Guid:
       Data1: 837247320

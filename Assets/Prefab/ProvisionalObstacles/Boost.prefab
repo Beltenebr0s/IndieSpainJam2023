@@ -120,3 +120,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostAmount: 5
   boostDuration: 5
+  player: {fileID: 0}

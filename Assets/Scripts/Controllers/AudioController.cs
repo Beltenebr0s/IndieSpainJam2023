@@ -1,22 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    private FMOD.Studio.EventInstance gameplayMusicI;
-    private FMOD.Studio.EventInstance menuMusicI;
-    private FMOD.Studio.EventInstance deathI;
-    [SerializeField] private FMODUnity.EventReference gameplayMusic;
-    [SerializeField] private FMODUnity.EventReference menuMusic;
-    [SerializeField] private FMODUnity.EventReference moonDeath;
-    [SerializeField] private FMODUnity.EventReference earthDeath;
+    [SerializeField, BankRef] private string mainBank;
 
+    [SerializeField] private Bus musicBus;
+    [SerializeField] private Bus SFXBus;
+
+    private EventInstance gameplayMusicI;
+    private EventInstance menuMusicI;
+    private EventInstance deathI;
+
+    [SerializeField] private EventReference gameplayMusic;
+    [SerializeField] private EventReference menuMusic;
+    [SerializeField] private EventReference moonDeath;
+    [SerializeField] private EventReference earthDeath;
+
+    private void Awake()
+    {
+        RuntimeManager.LoadBank(mainBank, true);
+        RuntimeManager.WaitForAllSampleLoading();
+    }
     void Start()
     {
-        menuMusicI = FMODUnity.RuntimeManager.CreateInstance(menuMusic);
-        gameplayMusicI = FMODUnity.RuntimeManager.CreateInstance(gameplayMusic);
+        musicBus = RuntimeManager.GetBus("bus:/Music");
+        SFXBus = RuntimeManager.GetBus("bus:/SFX");
+
+        menuMusicI = RuntimeManager.CreateInstance(menuMusic);
+        gameplayMusicI = RuntimeManager.CreateInstance(gameplayMusic);
+
+
         menuMusicI.start();   
     }
 
@@ -42,13 +57,23 @@ public class AudioController : MonoBehaviour
 
     public void PlayDeath()
     {
-        deathI = FMODUnity.RuntimeManager.CreateInstance(moonDeath);
+        deathI = RuntimeManager.CreateInstance(moonDeath);
         deathI.start();
     }
 
     public void PlayVictory()
     {
-        deathI = FMODUnity.RuntimeManager.CreateInstance(earthDeath);
+        deathI = RuntimeManager.CreateInstance(earthDeath);
         deathI.start();
+    }
+
+    public void SetVolumeMusic(float vol)
+    {
+        musicBus.setVolume(vol);
+    }
+
+    public void SetVolumeSFX(float vol)
+    {
+        SFXBus.setVolume(vol);
     }
 }
