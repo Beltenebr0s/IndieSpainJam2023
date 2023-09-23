@@ -25,19 +25,19 @@ public class Warming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, player.transform.position.z), Camera.main.transform.position);
+        float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);
         frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
         frustumWidth = frustumHeight / Camera.main.aspect;
         Vector3 frustum = Camera.main.WorldToScreenPoint(new Vector3(frustumWidth, frustumWidth, 0));
-        Vector3 obstacleOnScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+        //Vector3 obstacleOnScreenPos = Camera.main.WorldToScreenPoint(this.transform.position);
 
 
-        bool isOnScreen = (obstacleOnScreenPos.x < frustum.y && obstacleOnScreenPos.x > -frustum.y && obstacleOnScreenPos.y < frustum.y && obstacleOnScreenPos.y > -frustum.y);
+        bool isOnScreen = (this.transform.position.x < frustumWidth && this.transform.position.x > -frustumWidth && this.transform.position.y < frustumWidth && this.transform.position.y > -frustumWidth);
 
         // if the distance with the player is lower than 10, show the warming
-        if (!isOnScreen && Vector3.Distance(this.transform.position, player.transform.position) < 40 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 20)
+        if (!isOnScreen && Vector3.Distance(this.transform.position, player.transform.position) < 40 && 
+            Mathf.Abs(this.transform.position.z - player.transform.position.z) < 20 && 
+            this.transform.position.z >= player.transform.position.z)
         {
             if(!warmUiActive){
                 warmUi = Instantiate(warmUi, canvas.transform);
@@ -51,7 +51,7 @@ public class Warming : MonoBehaviour
 
             float imageSize = warmUi.GetComponent<RectTransform>().rect.width / 2;
 
-            screenPosition.x = Mathf.Clamp(screenPosition.x, frustum.y + imageSize, frustum.y * 3.0f - imageSize);
+            screenPosition.x = Mathf.Clamp(screenPosition.x, frustum.y / 2 + imageSize, frustum.y * 3.0f - imageSize);
             screenPosition.y = Mathf.Clamp(screenPosition.y, 0 + imageSize, frustum.y * 2.0f - imageSize);
 
             float rot_z = Mathf.Atan2(this.transform.position.y, this.transform.position.x) * Mathf.Rad2Deg;
