@@ -52,6 +52,12 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
         this.transform.RotateAround(earth.transform.position, direction, speed * Time.deltaTime);
     }
 
+    public void FirstMove()
+    {
+        this.transform.LookAt(earth.transform);
+        this.transform.RotateAround(earth.transform.position, direction, Random.Range(speed * 10, speed * 20));
+    }
+
     public void DamagePlayer(int force)
     {
         player.GetComponent<PlayerController>().hitPlayer(force);

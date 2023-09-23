@@ -113,6 +113,7 @@ public class MObstacleSpawner : MonoBehaviour
         newObstacle.GetComponent<IIdleObstacle>().Move();
         satellites.Add(newObstacle);
         newObstacle.transform.parent = this.transform;
+        newObstacle.GetComponent<MSatellite>().FirstMove();
     }
     private void CreateAsteroid()
     {
