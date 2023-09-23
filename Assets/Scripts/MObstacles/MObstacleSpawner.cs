@@ -22,7 +22,6 @@ public class MObstacleSpawner : MonoBehaviour
     public GameObject prefabSatellite;
 
     [Header("Moving Obstacles")]
-    public GameObject prefabLaser;
     public GameObject prefabMisile;
     public GameObject prefabBoomerang;
     
@@ -66,11 +65,7 @@ public class MObstacleSpawner : MonoBehaviour
     {
         float randomNumber = Random.value;
         GameObject newObstacle = null;
-        if (randomNumber <= 0.33f)
-        {
-            newObstacle = GameObject.Instantiate(prefabLaser, spawnPosition.position, Quaternion.identity);
-        }
-        else if (randomNumber <= 0.66f)
+        if (randomNumber <= 0.5f)
         {
             newObstacle = GameObject.Instantiate(prefabMisile, spawnPosition.position, Quaternion.identity);
         }
@@ -103,7 +98,6 @@ public class MObstacleSpawner : MonoBehaviour
         newObstacle.GetComponent<IIdleObstacle>().Move();
         activeObstacles.Add(newObstacle);
         newObstacle.transform.SetParent(this.transform);
-        StartCoroutine(DestroyObstacle(newObstacle));
     }
 
     private void CreateSatellite()

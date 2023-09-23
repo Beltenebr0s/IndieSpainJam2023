@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7487219259815442277}
   - component: {fileID: 1361740201057361028}
   - component: {fileID: 6362162121129299150}
-  - component: {fileID: 1007016026688036410}
+  - component: {fileID: 3942203531907330963}
   m_Layer: 0
   m_Name: Garbage
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.1070964, y: 1.3376081, z: -0.06252581}
-  m_LocalScale: {x: 6, y: 1.8, z: 3}
+  m_LocalScale: {x: 1, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1007016026688036410
+--- !u!114 &3942203531907330963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,11 +117,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3704254318029904476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddee9999e57bef4da049e79223da0f1, type: 3}
+  m_Script: {fileID: 11500000, guid: a49d5dd1d967fa543bf30373d9dadab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   earth: {fileID: 0}
   player: {fileID: 0}
+  gameController: {fileID: 0}
   forceMax: 1
   change: 0.01
   force: 0
