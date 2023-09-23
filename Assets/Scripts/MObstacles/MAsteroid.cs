@@ -20,6 +20,7 @@ public class MAsteroid : MonoBehaviour, IIdleObstacle
     void Start()
     {
         this.GetComponent<Renderer>().material.color = Color.magenta;
+        player = GameObject.Find("Player");
     }
 
     void Update()
@@ -85,16 +86,18 @@ public class MAsteroid : MonoBehaviour, IIdleObstacle
         return pos;
     }
     
-    void OnCollisionEnter(Collision collision)
+
+
+    public void Collision(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
             DamagePlayer(1);
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (collider.gameObject.CompareTag("Obstacle"))
         {
             // Audio
-            Destroy(collision.gameObject);
+            Destroy(collider.gameObject);
         }
         Destroy(this.gameObject);
     }

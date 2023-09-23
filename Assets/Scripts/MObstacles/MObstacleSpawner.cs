@@ -17,7 +17,7 @@ public class MObstacleSpawner : MonoBehaviour
     public int satelliteAmount = 100;
 
     [Header("Idle Obstacles")]
-    public GameObject prefabAsteroid;
+    public List<GameObject> prefabAsteroid;
     public GameObject prefabGarbage;
     public GameObject prefabSatellite;
 
@@ -92,7 +92,7 @@ public class MObstacleSpawner : MonoBehaviour
         GameObject newObstacle = null;
         if (randomNumber <= 0.5f)
         {
-            newObstacle = GameObject.Instantiate(prefabAsteroid, spawnPosition.position, Quaternion.identity);
+            newObstacle = GameObject.Instantiate(prefabAsteroid[Random.Range(0,prefabAsteroid.Count)], spawnPosition.position, Quaternion.identity);
         }
         else
         {
@@ -117,7 +117,7 @@ public class MObstacleSpawner : MonoBehaviour
     }
     private void CreateAsteroid()
     {
-        GameObject newObstacle = GameObject.Instantiate(prefabAsteroid, spawnPosition.position, Quaternion.identity);
+        GameObject newObstacle = GameObject.Instantiate(prefabAsteroid[Random.Range(0,prefabAsteroid.Count)], spawnPosition.position, Quaternion.identity);
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
         satellites.Add(newObstacle);

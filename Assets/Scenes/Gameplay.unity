@@ -869,7 +869,9 @@ MonoBehaviour:
   spawnPosition: {fileID: 811441881}
   timerToDespawn: 1e+9
   satelliteAmount: 1000
-  prefabAsteroid: {fileID: 4842401025730016251, guid: ad9127628abccd04cac9c1acc42300aa, type: 3}
+  prefabAsteroid:
+  - {fileID: 4842401025730016251, guid: a2c9e52c709b7f4488974180771fa4d6, type: 3}
+  - {fileID: 4842401025730016251, guid: 245747f86b3900747b9b7cbc62f2901d, type: 3}
   prefabGarbage: {fileID: 3704254318029904476, guid: 0ea04fa9f03cc47468d7f538cc8a557a, type: 3}
   prefabSatellite: {fileID: 4004723684304809249, guid: 9713d3b2c95d8e94e9d4fec2d8613d3b, type: 3}
   prefabLaser: {fileID: 858287344271248579, guid: 93225b8f6c14fa643b9ad7c5ff19ef7d, type: 3}
