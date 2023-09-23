@@ -10,11 +10,14 @@ public class Misile : MonoBehaviour, IMovingObstacle
     public float force;
     public Vector3 direction;
     public Rigidbody rb;
+    public Vector3 finalposition;
 
 
     void Update()
     {
         Move();
+        //que gire que siempre mola mas
+        transform.Rotate(Vector3.up * -10);
     }
 
     public void Throw()
@@ -26,8 +29,10 @@ public class Misile : MonoBehaviour, IMovingObstacle
         {
             randomPointInSphere.z = -randomPointInSphere.z;
         }
-        direction = randomPointInSphere - earth.transform.position;
+        finalposition = player.transform.position;
+        direction = finalposition - randomPointInSphere;
         rb.AddForce(force * direction.normalized, ForceMode.Impulse);
+        transform.Rotate(Vector3.right * -90);
     }
     private void Move()
     {
@@ -41,13 +46,12 @@ public class Misile : MonoBehaviour, IMovingObstacle
             Debug.Log("Ay perdí mi Rigidbody");
             rb = this.GetComponent<Rigidbody>();
         }
-        Vector3 directionToPlayer = (this.transform.position - player.transform.position);
-        // Forma vectorial de la ecuación de gravitación universal para dirigir un poco el misil
-        // hacia la luna :')
-        Vector3 fakeGravityForce = (- (rb.mass * player.GetComponent<Rigidbody>().mass) / directionToPlayer.magnitude)
-                                 * directionToPlayer.normalized;
-        rb.AddForce(fakeGravityForce, ForceMode.Force);
-        Debug.DrawLine(this.transform.position, fakeGravityForce);
+        Debug.DrawLine(this.transform.position, finalposition);
+        float distanceToTarget = Vector3.Distance(this.transform.position, finalposition);
+    if (distanceToTarget < 1.0f) 
+    {
+        Destroy(this.gameObject);
+    }
     }
     public void DamagePlayer(int damageValue)
     {
