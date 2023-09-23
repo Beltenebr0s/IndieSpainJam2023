@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float speed = 1;
-    public float maneuverSpeed = 0.05f;
+    public float maneuverSpeed = 0.1f;
+    public float maxManeuverSpeed = 5;
     public float maxSpeed = 50;
     public float takeoffSpeed = 20f;
     public float dashAceleration = 10f;
@@ -59,16 +60,12 @@ public class PlayerController : MonoBehaviour
             // comprueba el movimiento que se quiere hacer
             float xMove = Input.GetAxisRaw("Horizontal");
             float yMove = Input.GetAxisRaw("Vertical");
-
-            // se a�ade la aceleracion sin que supere un maximo
-            if (Mathf.Abs(playerRB.velocity.x + xMove * maneuverSpeed) < maxSpeed)
-                xMove = playerRB.velocity.x + xMove * maneuverSpeed;
-            else
-                xMove = maxSpeed;
-            if (Mathf.Abs(playerRB.velocity.y + yMove * maneuverSpeed) < maxSpeed)
-                yMove = playerRB.velocity.y + yMove * maneuverSpeed;
-            else
-                yMove = maxSpeed;
+            
+            // se calcula la aceleracion sin que supere un maximo
+            xMove = playerRB.velocity.x + xMove * maneuverSpeed;
+            yMove = playerRB.velocity.y + yMove * maneuverSpeed;
+            xMove = Mathf.Clamp(xMove, -maxManeuverSpeed, maxManeuverSpeed);
+            yMove = Mathf.Clamp(yMove, -maxManeuverSpeed, maxManeuverSpeed);
 
             // se asigna la aceleracion
             playerRB.velocity = new Vector3(xMove, yMove, playerRB.velocity.z) * speed;
@@ -80,11 +77,23 @@ public class PlayerController : MonoBehaviour
 
             // se corrige en caso de sobrepasarlos
             if (Mathf.Abs(this.transform.position.x - limPos.x) > 0.1f)
+            {
                 if ((playerRB.velocity.x > 0 && limPos.x > 0) || (playerRB.velocity.x < 0 && limPos.x < 0))
+                {
                     playerRB.velocity = new Vector3(0, playerRB.velocity.y, playerRB.velocity.z);
+                    this.transform.position = new Vector3(limPos.x, this.transform.position.y, this.transform.position.z);
+                }
+
+            }
             if (Mathf.Abs(this.transform.position.y - limPos.y) > 0.1f)
+            {
                 if ((playerRB.velocity.y > 0 && limPos.y > 0) || (playerRB.velocity.y < 0 && limPos.y < 0))
+                {
                     playerRB.velocity = new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z);
+                    this.transform.position = new Vector3(this.transform.position.x, limPos.y, this.transform.position.z);
+                }
+
+            }
 
         }
     }
@@ -99,7 +108,7 @@ public class PlayerController : MonoBehaviour
     public void acelerar(float speedAceleration)
     {
         float zVelocity = Mathf.Clamp(playerRB.velocity.z + speedAceleration, 0, maxSpeed);
-        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, playerRB.velocity.z + speedAceleration);
+        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, zVelocity);
     }
 
     public void hitPlayer(float force)

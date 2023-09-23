@@ -102,7 +102,7 @@ public class MObstacleSpawner : MonoBehaviour
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
         activeObstacles.Add(newObstacle);
-        newObstacle.transform.parent = this.transform;
+        newObstacle.transform.SetParent(this.transform);
         StartCoroutine(DestroyObstacle(newObstacle));
     }
 
@@ -112,7 +112,7 @@ public class MObstacleSpawner : MonoBehaviour
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
         satellites.Add(newObstacle);
-        newObstacle.transform.parent = this.transform;
+        newObstacle.transform.SetParent(this.transform);
         newObstacle.GetComponent<MSatellite>().FirstMove();
     }
     private void CreateAsteroid()
@@ -121,7 +121,7 @@ public class MObstacleSpawner : MonoBehaviour
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
         satellites.Add(newObstacle);
-        newObstacle.transform.parent = this.transform;
+        newObstacle.transform.SetParent(this.transform);
     }
 
     IEnumerator DestroyObstacle(GameObject obstacle)

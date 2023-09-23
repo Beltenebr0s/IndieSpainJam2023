@@ -22,25 +22,15 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
     void Start()
     {
         gameController = GameObject.Find("GameController");
+        earth = GameObject.Find("Earth");
+        player = GameObject.Find("Player");
     }
 
     void Update()
     {
         this.Move();
 
-        if(Vector3.Distance(this.transform.position, player.transform.position) < 10f && this.transform.position.z > player.transform.position.z)
-        {
-            this.GetComponent<Renderer>().material.color = Color.red;
-            Debug.Log("Satellite near");
-            // -Debug.Break();
-            near = true;
-        }
-        else if(near)
-        {
-            this.GetComponent<Renderer>().material.color = Color.white;
-            near = false;
-        }
-        else if(this.transform.position.z < player.transform.position.z)
+        if(this.transform.position.z < player.transform.position.z - 10f)
         {
             Destroy(this.gameObject);
         }
@@ -87,16 +77,15 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
         return pos;
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Player"))
         {
             DamagePlayer(1);
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (other.gameObject.CompareTag("Obstacle"))
         {
             // Audio
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
         Destroy(this.gameObject);
     }

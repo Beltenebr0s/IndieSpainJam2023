@@ -485,7 +485,8 @@ MonoBehaviour:
   tierra: {fileID: 419061221}
   gameControoler: {fileID: 2051046470}
   speed: 1
-  maneuverSpeed: 0.05
+  maneuverSpeed: 0.7
+  maxManeuverSpeed: 5
   maxSpeed: 100
   takeoffSpeed: 5
   dashAceleration: 10
