@@ -58,11 +58,6 @@ public class Warming : MonoBehaviour
 
             warmUi.transform.position = screenPosition;
             this.gameObject.GetComponent<Renderer>().material.color = Color.red;
-
-            if(!noBreak){
-                noBreak = true;
-                //Debug.Break();
-            }
         }
         else{
             if(warmUiActive){
@@ -74,8 +69,8 @@ public class Warming : MonoBehaviour
     }
 
     private void OnDestroy() {
-        if(warmUi == null)
-            Destroy(warmUi);
+        
+        Destroy(warmUi);
         Destroy(this);
     }
 }
