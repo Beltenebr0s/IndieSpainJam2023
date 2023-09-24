@@ -19,6 +19,8 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
 
     private ObjectAudio objectAudio;
 
+    public int damageValue = 1;
+    
     void Start()
     {
         this.GetComponent<Renderer>().material.color = Color.magenta;
@@ -98,12 +100,17 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            DamagePlayer(1);
+            DamagePlayer(damageValue);
         }
         else if (collider.gameObject.CompareTag("Obstacle"))
         {
             Destroy(collider.gameObject);
         }
         Destroy(this.gameObject);
+    }
+
+    public void setDamageValue(int damageValue)
+    {
+        this.damageValue = damageValue;
     }
 }

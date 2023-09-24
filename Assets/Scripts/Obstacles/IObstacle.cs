@@ -5,7 +5,6 @@ using UnityEngine;
 public interface IObstacle
 {
     void DamagePlayer(int damageValue);
-
     Vector3 FindStartingPosition();
-
+    void setDamageValue(int damageValue);
 }

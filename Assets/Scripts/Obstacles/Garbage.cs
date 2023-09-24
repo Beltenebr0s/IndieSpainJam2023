@@ -15,6 +15,8 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     private int increm = -1;
     public float force;
 
+    public int damageValue = 1;
+
     void Update()
     {
         this.Move();
@@ -38,7 +40,7 @@ public class Garbage : MonoBehaviour, IIdleObstacle
 
     public void DamagePlayer(int damageValue)
     {
-        player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
+        player.GetComponent<PlayerController>().hitPlayer(damageValue);
     }
 
     public Vector3 FindStartingPosition()
@@ -59,18 +61,23 @@ public class Garbage : MonoBehaviour, IIdleObstacle
         return pos;
     }
     
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            DamagePlayer(1);
+            DamagePlayer(damageValue);
             
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (other.gameObject.CompareTag("Obstacle"))
         {
             // Audio
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
         Destroy(this.gameObject);
+    }
+
+    public void setDamageValue(int damageValue)
+    {
+        this.damageValue = damageValue;
     }
 }

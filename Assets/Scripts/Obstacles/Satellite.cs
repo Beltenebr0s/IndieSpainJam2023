@@ -21,6 +21,8 @@ public class Satellite : MonoBehaviour, IIdleObstacle
 
     private ObjectAudio objectAudio;
 
+    public int damageValue = 1;
+
     void Start()
     {
         gameController = GameObject.Find("GameController");
@@ -41,6 +43,8 @@ public class Satellite : MonoBehaviour, IIdleObstacle
 
     public void Move()
     {
+        float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
+
         this.transform.LookAt(earth.transform);
         this.transform.RotateAround(earth.transform.position, direction, speed * Time.deltaTime);
     }
@@ -66,11 +70,7 @@ public class Satellite : MonoBehaviour, IIdleObstacle
 
         gameController = GameObject.Find("GameController");
         float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
-        Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), Random.Range(player.transform.position.z + 10, earth.transform.position.z - 3));
-        Debug.Log("Satellite position: " + pos);
-        Debug.Log(frustumWidth);
-        Debug.Log(Random.Range(-frustumWidth, frustumWidth));
-
+        Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), Random.Range(player.transform.position.z + 10, earth.transform.position.z - 20));
 
         this.direction = new Vector3(Random.value, Random.value, Random.value).normalized;
         speed = Mathf.Sign(Random.Range(-1f, 1f)) * Random.Range(minSpeed, maxSpeed);
@@ -83,7 +83,7 @@ public class Satellite : MonoBehaviour, IIdleObstacle
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player"))
         {
-            DamagePlayer(1);
+            DamagePlayer(damageValue);
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {
@@ -91,5 +91,10 @@ public class Satellite : MonoBehaviour, IIdleObstacle
             Destroy(other.gameObject);
         }
         Destroy(this.gameObject);
+    }
+
+    public void setDamageValue(int damageValue)
+    {
+        this.damageValue = damageValue;
     }
 }

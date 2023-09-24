@@ -7,6 +7,8 @@ public class Boomerang : MonoBehaviour, IMovingObstacle
     public GameObject earth;
     public GameObject player;
 
+    public int damageValue = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,7 @@ public class Boomerang : MonoBehaviour, IMovingObstacle
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            DamagePlayer(1);
+            DamagePlayer(damageValue);
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
@@ -45,5 +47,9 @@ public class Boomerang : MonoBehaviour, IMovingObstacle
             Destroy(collision.gameObject);
         }
         Destroy(this.gameObject);
+    }
+    public void setDamageValue(int damageValue)
+    {
+        this.damageValue = damageValue;
     }
 }

@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    GameObject player;
-    List<GameObject> activeObstacles;
+    private  GameObject player;
+    private List<GameObject> activeObstacles;
+
+    public enum EDificultad
+    {
+        Facil,
+        Normal,
+        Dificil,
+        Libre
+    }
+    public EDificultad dificultad = EDificultad.Facil;
 
     List<GameObject> satellites;
 
     [Header("Spawn Settings")]
+    private float tSpawn = 0f;
+    //private Transform spawnPosition;
     public float timerToSpawn = 5f;
-    public float tSpawn = 0f;
-    public Transform spawnPosition;
-    public float timerToDespawn = 3;
     public int satelliteAmount = 100;
+    public int demageValue = 1; 
 
     [Header("Idle Obstacles")]
     public List<GameObject> prefabAsteroid;
@@ -25,8 +34,28 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject prefabMisile;
     public GameObject prefabBoomerang;
     
+
     void Start()
     {
+        switch (dificultad)
+        {
+            case EDificultad.Facil:
+                timerToSpawn = 3f;
+                satelliteAmount = 500;
+                demageValue = 1;
+                break;
+            case EDificultad.Normal:
+                timerToSpawn = 1f;
+                satelliteAmount = 750;
+                demageValue = 2;
+                break;
+            case EDificultad.Dificil:
+                timerToSpawn = 0.5f;
+                satelliteAmount = 1000;
+                demageValue = 3;
+                break;
+        }
+
         activeObstacles = new List<GameObject>();
         satellites = new List<GameObject>();
         
@@ -62,18 +91,18 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject newObstacle = null;
         if (randomNumber <= 0.5f)
         {
-            newObstacle = GameObject.Instantiate(prefabMisile, spawnPosition.position, Quaternion.identity);
+            newObstacle = GameObject.Instantiate(prefabMisile);
         }
         else
         {
-            newObstacle = GameObject.Instantiate(prefabBoomerang, spawnPosition.position, Quaternion.identity);
+            newObstacle = GameObject.Instantiate(prefabBoomerang);
         }
 
         newObstacle.transform.position = newObstacle.GetComponent<IMovingObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IMovingObstacle>().Throw();
+        newObstacle.GetComponent<IMovingObstacle>().setDamageValue(demageValue);
         activeObstacles.Add(newObstacle);
         newObstacle.transform.parent = this.transform;
-        StartCoroutine(DestroyObstacle(newObstacle));
     }
 
     public void CreateIdleObstacle()
@@ -82,42 +111,28 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject newObstacle = null;
         if (randomNumber <= 0.5f)
         {
-            newObstacle = GameObject.Instantiate(prefabAsteroid[Random.Range(0,prefabAsteroid.Count)], spawnPosition.position, Quaternion.identity);
+            newObstacle = GameObject.Instantiate(prefabAsteroid[Random.Range(0,prefabAsteroid.Count)]);
         }
         else
         {
-            newObstacle = GameObject.Instantiate(prefabGarbage, spawnPosition.position, Quaternion.identity);
+            newObstacle = GameObject.Instantiate(prefabGarbage);
         }
 
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
+        newObstacle.GetComponent<IIdleObstacle>().setDamageValue(demageValue);
         activeObstacles.Add(newObstacle);
         newObstacle.transform.SetParent(this.transform);
     }
 
     private void CreateSatellite()
     {
-        GameObject newObstacle = GameObject.Instantiate(prefabSatellite, spawnPosition.position, Quaternion.identity);
+        GameObject newObstacle = GameObject.Instantiate(prefabSatellite);
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
+        newObstacle.GetComponent<IIdleObstacle>().setDamageValue(demageValue);
         satellites.Add(newObstacle);
         newObstacle.transform.SetParent(this.transform);
         newObstacle.GetComponent<Satellite>().FirstMove();
     }
-    private void CreateAsteroid()
-    {
-        GameObject newObstacle = GameObject.Instantiate(prefabAsteroid[Random.Range(0,prefabAsteroid.Count)], spawnPosition.position, Quaternion.identity);
-        newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
-        newObstacle.GetComponent<IIdleObstacle>().Move();
-        satellites.Add(newObstacle);
-        newObstacle.transform.SetParent(this.transform);
-    }
-
-    IEnumerator DestroyObstacle(GameObject obstacle)
-    {
-        yield return new WaitForSeconds(timerToDespawn);
-        activeObstacles.Remove(obstacle);
-        Destroy(obstacle);
-    }
-
 }

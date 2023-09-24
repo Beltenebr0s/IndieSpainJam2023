@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IMovingObstacle : IObstacle
 {
     void Throw();
+    void setDamageValue(int damageValue);
+
 }

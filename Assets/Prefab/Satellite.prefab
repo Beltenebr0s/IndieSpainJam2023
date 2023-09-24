@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 930101926982763199}
   - component: {fileID: 552823620404696173}
   m_Layer: 0
-  m_Name: MSatellite
+  m_Name: Satellite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,9 +111,10 @@ MonoBehaviour:
   player: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   minSpeed: 5
-  maxSpeed: 10
+  maxSpeed: 7
   minSize: 0.1
   maxSize: 0.7
+  damageValue: 1
 --- !u!114 &8736755335792567469
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -485,8 +485,8 @@ MonoBehaviour:
   tierra: {fileID: 419061221}
   gameControoler: {fileID: 2051046470}
   speed: 1
-  maneuverSpeed: 0.2
-  maxManeuverSpeed: 5
+  maneuverSpeed: 1
+  maxManeuverSpeed: 7
   maxSpeed: 30
   takeoffSpeed: 5
   dashAceleration: 10
@@ -856,11 +856,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4358106982079365212, guid: 569accb1dc263234ebbc3671bed7c5af, type: 3}
   m_PrefabInstance: {fileID: 811441879}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &811441881 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2707713302531440246, guid: 569accb1dc263234ebbc3671bed7c5af, type: 3}
-  m_PrefabInstance: {fileID: 811441879}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &811441882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,11 +868,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab1c0a536a66b644a69fb45e127ba8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerToSpawn: 3
-  tSpawn: 0
-  spawnPosition: {fileID: 811441881}
-  timerToDespawn: 1e+9
-  satelliteAmount: 300
+  dificultad: 3
+  timerToSpawn: 1
+  satelliteAmount: 1000
+  demageValue: 1
   prefabAsteroid:
   - {fileID: 4842401025730016251, guid: a2c9e52c709b7f4488974180771fa4d6, type: 3}
   - {fileID: 4842401025730016251, guid: 245747f86b3900747b9b7cbc62f2901d, type: 3}

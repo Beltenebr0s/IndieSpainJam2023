@@ -11,6 +11,7 @@ public class Misile : MonoBehaviour, IMovingObstacle
     public Vector3 direction;
     public Rigidbody rb;
     public Vector3 finalposition;
+    public int damageValue = 1;
 
 
     private ObjectAudio objectAudio;
@@ -54,12 +55,12 @@ public class Misile : MonoBehaviour, IMovingObstacle
             Debug.Log("Ay perdí mi Rigidbody");
             rb = this.GetComponent<Rigidbody>();
         }
-        Debug.DrawLine(this.transform.position, finalposition);
+        //Debug.DrawLine(this.transform.position, finalposition);
         float distanceToTarget = Vector3.Distance(this.transform.position, finalposition);
-    if (distanceToTarget < 1.0f) 
-    {
-        Destroy(this.gameObject);
-    }
+        if (distanceToTarget < 1.0f) 
+        {
+            Destroy(this.gameObject);
+        }
     }
     public void DamagePlayer(int damageValue)
     {
@@ -86,12 +87,17 @@ public class Misile : MonoBehaviour, IMovingObstacle
         
         if (other.gameObject.CompareTag("Player"))
         {
-            DamagePlayer(1);            
+            DamagePlayer(damageValue);            
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {
             Destroy(other.gameObject);
         }
         Destroy(this.gameObject);
+    }
+
+    public void setDamageValue(int damageValue)
+    {
+        this.damageValue = damageValue;
     }
 }
