@@ -70,7 +70,15 @@ public class Satellite : MonoBehaviour, IIdleObstacle
 
         gameController = GameObject.Find("GameController");
         float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
-        Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), Random.Range(player.transform.position.z + 10, earth.transform.position.z - 20));
+
+        Debug.Log(Mathf.Log(player.transform.position.normalized.z + 10));
+
+        float zP = player.transform.position.z - earth.transform.position.z;
+
+        
+
+        Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), (Mathf.Sqrt(Random.Range(0f, 1f))) * zP);
+
 
         this.direction = new Vector3(Random.value, Random.value, Random.value).normalized;
         speed = Mathf.Sign(Random.Range(-1f, 1f)) * Random.Range(minSpeed, maxSpeed);
