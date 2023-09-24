@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08669058, g: 0.09872911, b: 0.17615733, a: 1}
+  m_IndirectSpecularColor: {r: 0.08654023, g: 0.09872911, b: 0.17639875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1845,8 +1845,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Final Score: 999999'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b54ea95f8899fdd43bc83b6549a0b75f, type: 2}
+  m_sharedMaterial: {fileID: 5135868134067924621, guid: b54ea95f8899fdd43bc83b6549a0b75f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
