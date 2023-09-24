@@ -98,14 +98,14 @@ public class GameController : MonoBehaviour
     public void EndTurn()
     {
         startGame = false;
-        //Debug.Log("Ended turn: " + currentTry);
+        Debug.Log("Ended turn: " + currentTry);
+        triesList[currentTry].texture = tryIconDisabled;
         if (currentTry >= numTries-1)
         {
             EndGame();
         }
         else
         {
-            triesList[currentTry].texture = tryIconDisabled;
             RestartGame();
         }
         currentTry++;

@@ -60,6 +60,7 @@ public class PlanetController : MonoBehaviour
             Debug.Log("Daño: " + hitSpeed);
             health -= hitSpeed;
             gameController.AddScore(hitSpeed);
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
         EndGame();
     }

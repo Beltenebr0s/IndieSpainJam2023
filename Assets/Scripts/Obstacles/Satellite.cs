@@ -71,7 +71,7 @@ public class Satellite : MonoBehaviour, IIdleObstacle
         gameController = GameObject.Find("GameController");
         float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
 
-        Debug.Log(Mathf.Log(player.transform.position.normalized.z + 10));
+//        Debug.Log(Mathf.Log(player.transform.position.normalized.z + 10));
 
         float zP = player.transform.position.z - earth.transform.position.z;
 
