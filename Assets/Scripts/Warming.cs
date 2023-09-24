@@ -5,6 +5,7 @@ using UnityEngine;
 public class Warming : MonoBehaviour
 {
     //public Re
+    public GameObject warmUiPref;
     public GameObject warmUi;
     private bool warmUiActive = false;
 
@@ -40,7 +41,7 @@ public class Warming : MonoBehaviour
             this.transform.position.z >= player.transform.position.z)
         {
             if(!warmUiActive){
-                warmUi = Instantiate(warmUi, canvas.transform);
+                warmUi = Instantiate(warmUiPref, canvas.transform);
                 warmUiActive = true;
             }            
 

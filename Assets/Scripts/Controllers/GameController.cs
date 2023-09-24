@@ -132,11 +132,11 @@ public class GameController : MonoBehaviour
     public void EndGame()
     {
         AudioParameters.Victory = 1;
-        //Debug.Log("End Game");
         startGame = false;
         endGame = true;
         player.GetComponent<PlayerController>().EndGame();
-        // Gameover Screen
+        GameObject obstacleSpawner = GameObject.Find("SpawnObstacle");
+        obstacleSpawner.GetComponent<ObstacleSpawner>().EndGame();
         hud.SetActive(false);
         scoreTextUI.SetText("Final score: " + Mathf.Round(score));
         gameOverMenu.SetActive(true);

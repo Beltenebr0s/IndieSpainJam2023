@@ -118,7 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d69b98f90e81784ab768232c833ca00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warmUi: {fileID: 2512724413364498017, guid: 49215336e4563464ea097f07f3e99537, type: 3}
+  warmUiPref: {fileID: 2512724413364498017, guid: 49215336e4563464ea097f07f3e99537, type: 3}
+  warmUi: {fileID: 0}
 --- !u!114 &7537919943095562048
 MonoBehaviour:
   m_ObjectHideFlags: 0

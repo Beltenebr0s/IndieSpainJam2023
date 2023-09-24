@@ -45,13 +45,8 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void StartGame()
     {
-        foreach (Transform child in transform)
-        {
-            if(child.name != "StartingPosition")
-                Destroy(child.gameObject);
-        }
-
         enCaida = false;
+        DestroyObstacles();
         switch (dificultad)
         {
             case EDificultad.Facil:
@@ -80,6 +75,25 @@ public class ObstacleSpawner : MonoBehaviour
         for (int i = 0; i < satelliteAmount; i++)
         {
             CreateSatellite();
+        }
+    }
+
+    public void EndGame()
+    {
+        DestroyObstacles();
+        enCaida = false;
+    }
+
+    public void DestroyObstacles()
+    {
+        foreach (Transform child in transform)
+        {
+            if(child.name != "StartingPosition")
+                Destroy(child.gameObject);
+        }
+        foreach (GameObject warm in GameObject.FindGameObjectsWithTag("WarmUI"))
+        {
+            Destroy(warm);
         }
     }
 
