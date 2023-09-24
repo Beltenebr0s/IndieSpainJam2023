@@ -368,7 +368,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1874054512}
   m_SourcePrefab: {fileID: 100100000, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
 --- !u!1001 &241308288
 PrefabInstance:
@@ -575,6 +578,7 @@ MonoBehaviour:
   takeoffSpeed: 5
   dashAceleration: 10
   constantAceleration: 2
+  playerAnimator: {fileID: 1874054512}
   enCaida: 0
   velocity: 0
 --- !u!54 &350411697
@@ -1137,6 +1141,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1874054511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
+  m_PrefabInstance: {fileID: 150260021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1874054512
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874054511}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c737d6b68eebaa4bad71c6a1c18c3ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1886136061 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 359124794667839300, guid: 8b71557788ec0bc47adae41d1a20e373, type: 3}

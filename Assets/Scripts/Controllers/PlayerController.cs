@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float takeoffSpeed = 20f;
     public float dashAceleration = 10f;
     public float constantAceleration = 0.5f;
-
+    public Animator playerAnimator;
     [System.NonSerialized]
     public float frustumWidth;
 
@@ -105,18 +105,21 @@ public class PlayerController : MonoBehaviour
     public void lanzarse()
     {
         gameControoler.RestartGame();
+        playerAnimator.SetTrigger("LaunchPlayer");
         enCaida = true;
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
     }
 
     public void acelerar(float speedAceleration)
     {
+        playerAnimator.SetTrigger("LaunchPlayer");
         float zVelocity = Mathf.Clamp(playerRB.velocity.z + speedAceleration, 0, maxSpeed);
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, zVelocity);
     }
 
     public void hitPlayer(float force)
     {
+        playerAnimator.SetTrigger("DamagePlayer");
         acelerar(-force * 2);
     }
 
