@@ -138,7 +138,7 @@ public class GameController : MonoBehaviour
         player.GetComponent<PlayerController>().EndGame();
         // Gameover Screen
         hud.SetActive(false);
-        scoreTextUI.SetText("Final score: " + score);
+        scoreTextUI.SetText("Final score: " + Mathf.Round(score));
         gameOverMenu.SetActive(true);
     }
 }
