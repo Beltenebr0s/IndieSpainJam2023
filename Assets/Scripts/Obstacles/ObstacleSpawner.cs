@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public enum EDificultad
 {
     Facil,
@@ -33,10 +34,24 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("Moving Obstacles")]
     public GameObject prefabMisile;
     public GameObject prefabBoomerang;
+
+    public bool enCaida = false;
     
 
     void Start()
     {
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        foreach (Transform child in transform)
+        {
+            if(child.name != "StartingPosition")
+                Destroy(child.gameObject);
+        }
+
+        enCaida = false;
         switch (dificultad)
         {
             case EDificultad.Facil:
@@ -66,23 +81,24 @@ public class ObstacleSpawner : MonoBehaviour
         {
             CreateSatellite();
         }
-        
     }
 
     void Update()
     {
-        if (!player.GetComponent<PlayerController>().enCaida)
+        if (!enCaida && player.GetComponent<PlayerController>().enCaida)
         {
-            return;
+            enCaida = true;
         }
-        if (tSpawn >= timerToSpawn)
-        {
-            CreateIdleObstacle();
-            CreateMovingObstacle();
+        if(enCaida){
+            if (tSpawn >= timerToSpawn)
+            {
+                CreateIdleObstacle();
+                CreateMovingObstacle();
 
-            tSpawn = 0f;
-        }
-        tSpawn += Time.deltaTime;
+                tSpawn = 0f;
+            }
+            tSpawn += Time.deltaTime;
+        }    
     }
     public void CambiarDificultad(EDificultad eDificultad)
     {

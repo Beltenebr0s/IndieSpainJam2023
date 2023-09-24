@@ -121,13 +121,13 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
         AudioParameters.Victory = 0;
-
-        //Debug.Log("Start Game");
         player.transform.position = initialPlayerPosition.position;
         player.GetComponent<PlayerController>().Reset();
         earth.transform.position = initialEarthPosition.position;
         startGame = true;
         earth.GetComponent<PlanetController>().StartGame();
+        GameObject obstacleSpawner = GameObject.Find("SpawnObstacle");
+        obstacleSpawner.GetComponent<ObstacleSpawner>().StartGame();
     }
 
     public void EndGame()

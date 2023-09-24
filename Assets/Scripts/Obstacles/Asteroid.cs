@@ -91,6 +91,9 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         }
 
         Vector3 pos = new Vector3(xPosition, yPosition, zPosition);
+        
+        this.transform.Rotate(new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f)));
+
         return pos;
     }
     

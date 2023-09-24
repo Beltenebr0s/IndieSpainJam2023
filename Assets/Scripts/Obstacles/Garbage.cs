@@ -15,7 +15,13 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     private int increm = -1;
     public float force;
 
+    public float rotationDirection;
+
     public int damageValue = 1;
+
+    private void Start() {
+        rotationDirection = Mathf.Sign(Random.Range(-1f, 1f));
+    }
 
     void Update()
     {
@@ -30,6 +36,7 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     public void Move()
     {
         this.transform.Translate(new Vector3(0, 1, 0) * force * Time.deltaTime);
+        transform.Rotate(new Vector3(0, 1, 0) * 50 * Time.deltaTime * rotationDirection);
 
         if (Mathf.Abs(force) > forceMax)
         {
@@ -54,10 +61,12 @@ public class Garbage : MonoBehaviour, IIdleObstacle
 
         float x = Random.Range(-frustumWidth, frustumWidth);
         float y = Random.Range(-frustumWidth, frustumWidth);
-        float z = Random.Range(player.transform.position.z + 20f, player.transform.position.z + 30f);
+        float z = Random.Range(player.transform.position.z + 70f, player.transform.position.z + 100f);
 
         Vector3 pos = new Vector3(x, y, z);
-        
+
+        this.transform.Rotate(new Vector3(0, 0, Random.Range(-20f, 20f)));
+
         return pos;
     }
     
