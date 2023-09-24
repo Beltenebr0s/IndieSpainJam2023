@@ -61,7 +61,9 @@ public class Garbage : MonoBehaviour, IIdleObstacle
 
         float x = Random.Range(-frustumWidth, frustumWidth);
         float y = Random.Range(-frustumWidth, frustumWidth);
-        float z = Random.Range(player.transform.position.z + 70f, player.transform.position.z + 100f);
+        float z = Random.Range(player.transform.position.z + 20f, earth.transform.position.z - 30f);
+        
+
 
         Vector3 pos = new Vector3(x, y, z);
 

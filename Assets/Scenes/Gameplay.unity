@@ -977,6 +977,7 @@ MonoBehaviour:
   dificultad: 3
   timerToSpawn: 1
   satelliteAmount: 1000
+  garbageAnount: 1000
   demageValue: 1
   prefabAsteroid:
   - {fileID: 4842401025730016251, guid: a2c9e52c709b7f4488974180771fa4d6, type: 3}
@@ -985,6 +986,7 @@ MonoBehaviour:
   prefabSatellite: {fileID: 4004723684304809249, guid: 9713d3b2c95d8e94e9d4fec2d8613d3b, type: 3}
   prefabMisile: {fileID: 2010337584049232749, guid: a3e27cc76d5096346a0266097b459f52, type: 3}
   prefabBoomerang: {fileID: 2010337584049232749, guid: a3e27cc76d5096346a0266097b459f52, type: 3}
+  enCaida: 0
 --- !u!1 &915674226 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7786941588078335039, guid: 8b71557788ec0bc47adae41d1a20e373, type: 3}

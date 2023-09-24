@@ -24,6 +24,7 @@ public class ObstacleSpawner : MonoBehaviour
     //private Transform spawnPosition;
     public float timerToSpawn = 5f;
     public int satelliteAmount = 100;
+    public int garbageAnount = 100;
     public int demageValue = 1; 
 
     [Header("Idle Obstacles")]
@@ -51,17 +52,20 @@ public class ObstacleSpawner : MonoBehaviour
         {
             case EDificultad.Facil:
                 timerToSpawn = 3f;
-                satelliteAmount = 500;
+                satelliteAmount = 100;
+                garbageAnount = 25;
                 demageValue = 1;
                 break;
             case EDificultad.Normal:
                 timerToSpawn = 1f;
-                satelliteAmount = 750;
+                satelliteAmount = 250;
+                garbageAnount = 45;
                 demageValue = 2;
                 break;
             case EDificultad.Dificil:
                 timerToSpawn = 0.5f;
-                satelliteAmount = 1000;
+                satelliteAmount = 500;
+                garbageAnount = 65;
                 demageValue = 3;
                 break;
         }
@@ -75,6 +79,10 @@ public class ObstacleSpawner : MonoBehaviour
         for (int i = 0; i < satelliteAmount; i++)
         {
             CreateSatellite();
+        }
+        for (int i = 0; i < garbageAnount; i++)
+        {
+            CreateGarbage();
         }
     }
 
@@ -141,24 +149,25 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void CreateIdleObstacle()
     {
-        float randomNumber = Random.value;
         GameObject newObstacle = null;
-        if (randomNumber <= 0.5f)
-        {
-            newObstacle = GameObject.Instantiate(prefabAsteroid[Random.Range(0,prefabAsteroid.Count)]);
-        }
-        else
-        {
-            newObstacle = GameObject.Instantiate(prefabGarbage);
-        }
-
+        
+        newObstacle = GameObject.Instantiate(prefabAsteroid[Random.Range(0,prefabAsteroid.Count)]);
+        
         newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
         newObstacle.GetComponent<IIdleObstacle>().Move();
         newObstacle.GetComponent<IIdleObstacle>().setDamageValue(demageValue);
         activeObstacles.Add(newObstacle);
         newObstacle.transform.SetParent(this.transform);
     }
-
+    private void CreateGarbage()
+    {
+        GameObject newObstacle = GameObject.Instantiate(prefabGarbage);
+        newObstacle.transform.position = newObstacle.GetComponent<IIdleObstacle>().FindStartingPosition();
+        newObstacle.GetComponent<IIdleObstacle>().Move();
+        newObstacle.GetComponent<IIdleObstacle>().setDamageValue(demageValue);
+        activeObstacles.Add(newObstacle);
+        newObstacle.transform.SetParent(this.transform);
+    }
     private void CreateSatellite()
     {
         GameObject newObstacle = GameObject.Instantiate(prefabSatellite);
@@ -169,4 +178,5 @@ public class ObstacleSpawner : MonoBehaviour
         newObstacle.transform.SetParent(this.transform);
         newObstacle.GetComponent<Satellite>().FirstMove();
     }
+    
 }
