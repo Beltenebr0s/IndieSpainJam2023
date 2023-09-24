@@ -127,9 +127,4 @@ public class PlayerController : MonoBehaviour
         enCaida = false;
         playerRB.velocity = Vector3.zero;
     }
-
-    public void OnDestroy()
-    {
-        AudioParameters.Death = 1;
-    }
 }

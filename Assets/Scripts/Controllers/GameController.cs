@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOverMenu;
     public TMP_Text scoreTextUI;
     public float score;
+    public Animation finalAnimation;
 
     private void Start()
     {
@@ -114,8 +115,6 @@ public class GameController : MonoBehaviour
             RestartGame();
         }
         currentTry++;
-
-        AudioParameters.Victory = 1;
     }
 
     public void RestartGame()
@@ -132,6 +131,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame()
     {
+        AudioParameters.Victory = 1;
         //Debug.Log("End Game");
         startGame = false;
         endGame = true;
@@ -140,5 +140,7 @@ public class GameController : MonoBehaviour
         hud.SetActive(false);
         scoreTextUI.SetText("Final score: " + Mathf.Round(score));
         gameOverMenu.SetActive(true);
+        finalAnimation = GameObject.Find("PlenoAnim").GetComponent<Animation>();
+        finalAnimation.Play();
     }
 }

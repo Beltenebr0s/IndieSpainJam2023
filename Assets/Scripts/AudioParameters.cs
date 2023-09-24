@@ -5,8 +5,8 @@ using UnityEngine;
 static class AudioParameters
 {
     public static float Distance;
-    public static float Death;
-    public static float Victory;
+    public static float Death = 0;
+    public static float Victory = 0;
 
     public static float MasterVol = 1;
     public static float MusicVol = 1;
