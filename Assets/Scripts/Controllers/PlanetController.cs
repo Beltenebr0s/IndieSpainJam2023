@@ -13,35 +13,32 @@ public class PlanetController : MonoBehaviour
     [Header("Health Settings")]
     public float maxHealth = 1000;
     public float health;
-    public float firstHealthThreshold = 950;
-    public float secondHealthThreshold = 900;
+    public float firstHealthThreshold = 980;
+    public float secondHealthThreshold = 960;
 
-    [Header("Spawners")]
-    public GameObject spawnEasy;
-    public GameObject spawnMedium;
-    public GameObject spawnHard;
-    public GameObject activeSpawn;
+    public ObstacleSpawner objectSpawn;
     void Start()
     {
-        activeSpawn = spawnEasy;
         health = maxHealth;
     }
 
     public void StartGame()
     {
         startGame = true;
-        // Cambiar aspecto de la tierra según la vida que le quede
         if (health <= secondHealthThreshold)
         {
-            activeSpawn = spawnHard;
+            Debug.Log("Difícil");
+            objectSpawn.CambiarDificultad(EDificultad.Dificil);
         }
         else if (health <= firstHealthThreshold)
         {
-            activeSpawn = spawnMedium;
+            Debug.Log("Medio");
+            objectSpawn.CambiarDificultad(EDificultad.Normal);
         }
         else
         {
-            activeSpawn = spawnEasy;
+            Debug.Log("Fácil");
+            objectSpawn.CambiarDificultad(EDificultad.Facil);
         }
     }
 

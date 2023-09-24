@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum EDificultad
+{
+    Facil,
+    Normal,
+    Dificil,
+    Libre
+}
 
 public class ObstacleSpawner : MonoBehaviour
 {
     private  GameObject player;
     private List<GameObject> activeObstacles;
 
-    public enum EDificultad
-    {
-        Facil,
-        Normal,
-        Dificil,
-        Libre
-    }
     public EDificultad dificultad = EDificultad.Facil;
 
     List<GameObject> satellites;
@@ -83,6 +83,10 @@ public class ObstacleSpawner : MonoBehaviour
             tSpawn = 0f;
         }
         tSpawn += Time.deltaTime;
+    }
+    public void CambiarDificultad(EDificultad eDificultad)
+    {
+        dificultad = eDificultad;
     }
     
     public void CreateMovingObstacle()
