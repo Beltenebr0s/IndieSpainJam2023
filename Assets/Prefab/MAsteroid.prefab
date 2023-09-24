@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earth: {fileID: 0}
   player: {fileID: 0}
-  speed: 50
+  speed: 7.5
   direction: {x: 0, y: 0, z: 0}
   minDistanceToEarth: 0
   minDistanceToPlayer: 0

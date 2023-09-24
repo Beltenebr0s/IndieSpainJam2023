@@ -48,14 +48,9 @@ public class ObstacleSpawner : MonoBehaviour
         }
         if (tSpawn >= timerToSpawn)
         {
-            if (Random.value <= 0.5f)
-            {
-                CreateIdleObstacle();
-            }
-            else
-            {
-                CreateMovingObstacle();
-            }
+            CreateIdleObstacle();
+            CreateMovingObstacle();
+
             tSpawn = 0f;
         }
         tSpawn += Time.deltaTime;

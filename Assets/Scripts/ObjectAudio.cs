@@ -23,11 +23,11 @@ public class ObjectAudio : MonoBehaviour
 
     public void StopAudio()
     {
-        _instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        _instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     public void OnDestroy()
     {
-        _instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        _instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

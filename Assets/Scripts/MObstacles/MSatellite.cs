@@ -73,7 +73,7 @@ public class MSatellite : MonoBehaviour, IIdleObstacle
 
         gameController = GameObject.Find("GameController");
         float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
-        Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), Random.Range(player.transform.position.z + 10, earth.transform.position.z - 3));
+        Vector3 pos = new Vector3(Random.Range(-frustumWidth, frustumWidth), Random.Range(-frustumWidth, frustumWidth), Random.Range(player.transform.position.z + 10, earth.transform.position.z - 10));
         // Debug.Log("Satellite position: " + pos);
         // Debug.Log(frustumWidth);
         // Debug.Log(Random.Range(-frustumWidth, frustumWidth));

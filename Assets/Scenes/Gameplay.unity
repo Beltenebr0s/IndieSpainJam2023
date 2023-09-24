@@ -227,15 +227,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,7 +391,7 @@ Transform:
   m_GameObject: {fileID: 350411691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -279.8}
+  m_LocalPosition: {x: 0, y: 0, z: -1068.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -485,9 +485,9 @@ MonoBehaviour:
   tierra: {fileID: 419061221}
   gameControoler: {fileID: 2051046470}
   speed: 1
-  maneuverSpeed: 0.7
+  maneuverSpeed: 0.2
   maxManeuverSpeed: 5
-  maxSpeed: 100
+  maxSpeed: 30
   takeoffSpeed: 5
   dashAceleration: 10
   constantAceleration: 2
@@ -636,8 +636,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.71, y: 3.71, z: 3.71}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 241308289}
   m_Father: {fileID: 0}
@@ -655,6 +655,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 2051046470}
+  maxHealth: 1000
+  health: 0
+  firstHealthThreshold: 950
+  secondHealthThreshold: 900
+  spawnEasy: {fileID: 0}
+  spawnMedium: {fileID: 0}
+  spawnHard: {fileID: 0}
+  activeSpawn: {fileID: 0}
 --- !u!4 &427934602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
@@ -670,15 +678,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4384978842391485950, guid: 1d68e56c9030bd442b6f62f2905e800c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4384978842391485950, guid: 1d68e56c9030bd442b6f62f2905e800c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4384978842391485950, guid: 1d68e56c9030bd442b6f62f2905e800c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.01
       objectReference: {fileID: 0}
     - target: {fileID: 4384978842391485950, guid: 1d68e56c9030bd442b6f62f2905e800c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -865,11 +873,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab1c0a536a66b644a69fb45e127ba8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerToSpawn: 0.5
+  timerToSpawn: 1
   tSpawn: 0
   spawnPosition: {fileID: 811441881}
   timerToDespawn: 1e+9
-  satelliteAmount: 1000
+  satelliteAmount: 300
   prefabAsteroid:
   - {fileID: 4842401025730016251, guid: a2c9e52c709b7f4488974180771fa4d6, type: 3}
   - {fileID: 4842401025730016251, guid: 245747f86b3900747b9b7cbc62f2901d, type: 3}
@@ -917,6 +925,8 @@ GameObject:
   - component: {fileID: 2034260929}
   - component: {fileID: 2034260930}
   - component: {fileID: 2034260931}
+  - component: {fileID: 2034260933}
+  - component: {fileID: 2034260932}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -933,7 +943,7 @@ Transform:
   m_GameObject: {fileID: 2034260926}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -283.8}
+  m_LocalPosition: {x: 0, y: 0, z: -1078.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -971,7 +981,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1016,6 +1026,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 350411691}
+--- !u!114 &2034260932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034260926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054fd2b535ac8f44f929e1d7e5479a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2034260933
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034260926}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8516586, z: 0.46820068}
+  m_Center: {x: 0.0128977895, y: 0.007010579, z: 0.53930664}
 --- !u!1 &2051046469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2391d8e8623ae845add91ab29f720a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startGame: 0
+  numTries: 3
+  currentTry: 0
+  initialPlayerPosition: {fileID: 350411692}
+  initialEarthPosition: {fileID: 419061225}
   earth: {fileID: 419061221}
   player: {fileID: 350411691}
   pauseMenu: {fileID: 1206023795}
@@ -1052,6 +1100,10 @@ MonoBehaviour:
   maxTimeBetweenBoosts: 20
   boostsList:
   - {fileID: 9192464795109828459, guid: 960b758d8272891449c889c044fc852f, type: 3}
+  triesList: []
+  tryIconEnabled: {fileID: 0}
+  tryIconDisabled: {fileID: 0}
+  score: 0
 --- !u!4 &2051046471
 Transform:
   m_ObjectHideFlags: 0

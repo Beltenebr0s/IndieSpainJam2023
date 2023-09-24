@@ -12,6 +12,7 @@ public class Misile : MonoBehaviour, IMovingObstacle
     public Rigidbody rb;
     public Vector3 finalposition;
 
+
     private ObjectAudio objectAudio;
 
     void Start()
@@ -67,7 +68,9 @@ public class Misile : MonoBehaviour, IMovingObstacle
             Debug.Log("Dónde está el jugador >:(");
             player = GameObject.Find("Player");
         }
-        player.GetComponent<PlayerHealth>().TakeDamage(damageValue);
+        player.GetComponent<PlayerController>().hitPlayer(damageValue);
+        objectAudio.PlayImpactAudio();
+        
     }
 
     public Vector3 FindStartingPosition()
@@ -78,18 +81,16 @@ public class Misile : MonoBehaviour, IMovingObstacle
         return earth.transform.position - Vector3.forward * 4f;
     }
     
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        objectAudio.PlayImpactAudio();
-        if (collision.gameObject.CompareTag("Player"))
+        
+        if (other.gameObject.CompareTag("Player"))
         {
-            DamagePlayer(1);
-            
+            DamagePlayer(1);            
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (other.gameObject.CompareTag("Obstacle"))
         {
-            objectAudio.PlayImpactAudio();
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
         Destroy(this.gameObject);
     }

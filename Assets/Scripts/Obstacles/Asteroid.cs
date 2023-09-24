@@ -7,7 +7,7 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
     public GameObject earth;
     public GameObject player;
 
-    public int speed = 1;
+    public float speed = 1;
 
     public Vector3 direction;
     public float minDistanceToEarth;
@@ -58,6 +58,7 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
     public void DamagePlayer(int force)
     {
         player.GetComponent<PlayerController>().hitPlayer(force);
+        objectAudio.PlayImpactAudio();
     }
 
     public Vector3 FindStartingPosition()
@@ -68,11 +69,12 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         this.minDistanceToPlayer = 1f;
         
         // se calcula la posicion en la que aparecera el obstaculo
-        float zPosition = player.transform.position.z + 70f;
+        float zPosition = player.transform.position.z;
 
         // se calcula el frustum
-        float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);
+        float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, zPosition), Camera.main.transform.position);
         float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        frustumHeight *= 1.3f;   
 
         // se calcula la posicion en el eje x e y
         float xPosition = Random.Range(-frustumHeight * 1.1f, frustumHeight * 2f) * Mathf.Sign(Random.Range(-1f, 1f));
@@ -94,7 +96,6 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
 
     public void Collision(Collider collider)
     {
-        objectAudio.PlayImpactAudio();
         if (collider.gameObject.CompareTag("Player"))
         {
             DamagePlayer(1);

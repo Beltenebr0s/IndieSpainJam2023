@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earth: {fileID: 0}
   player: {fileID: 0}
-  speed: 50
+  speed: 7.5
   direction: {x: 0, y: 0, z: 0}
   minDistanceToEarth: 0
   minDistanceToPlayer: 0
@@ -244,11 +244,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5053925668127403250, guid: 8331fa5e80ebe6946a7eedc1b2cfa2c0, type: 3}
 --- !u!114 &1493814165506836651

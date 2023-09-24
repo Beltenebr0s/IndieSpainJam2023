@@ -110,8 +110,8 @@ MonoBehaviour:
   earth: {fileID: 0}
   player: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
-  minSpeed: 10
-  maxSpeed: 20
+  minSpeed: 5
+  maxSpeed: 10
   minSize: 0.1
   maxSize: 0.7
 --- !u!114 &8736755335792567469
