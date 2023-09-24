@@ -36,8 +36,7 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject prefabMisile;
     public GameObject prefabBoomerang;
 
-    public bool enCaida = false;
-    
+    private bool enCaida = false;    
 
     void Start()
     {
@@ -74,6 +73,7 @@ public class ObstacleSpawner : MonoBehaviour
         satellites = new List<GameObject>();
         
         player = GameObject.Find("Player");
+        
         tSpawn = 0f;
 
         for (int i = 0; i < satelliteAmount; i++)

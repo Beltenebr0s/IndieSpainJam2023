@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Garbage : MonoBehaviour, IIdleObstacle
 {
-    public GameObject earth;
-    public GameObject player;
-    public GameObject gameController;
-
+    private GameObject earth;
+    private GameObject player;
+    private GameObject gameController;
     private float minDistanceToEarth;
 
     public float forceMax = 1f;
     public float change = 0.01f;
     private int increm = -1;
-    public float force;
-
-    public float rotationDirection;
-
+    private float force;
+    private float rotationDirection;
     public int damageValue = 1;
+    private Vector3 initialPlayerPosition;
+    private Vector3 initialEarthPosition;
 
     private void Start() {
         rotationDirection = Mathf.Sign(Random.Range(-1f, 1f));
@@ -52,16 +51,18 @@ public class Garbage : MonoBehaviour, IIdleObstacle
 
     public Vector3 FindStartingPosition()
     {
+        gameController = GameObject.Find("GameController");
         earth = GameObject.Find("Earth");
         player = GameObject.Find("Player");
-        gameController = GameObject.Find("GameController");
+        initialPlayerPosition = GameObject.Find("InitialPlayerPosition").transform.position;
+        initialEarthPosition = GameObject.Find("InitialEarthPosition").transform.position;
         float frustumWidth = gameController.GetComponent<GameController>().frustumWidth;
 
         force = forceMax;
 
         float x = Random.Range(-frustumWidth, frustumWidth);
         float y = Random.Range(-frustumWidth, frustumWidth);
-        float z = Random.Range(player.transform.position.z + 20f, earth.transform.position.z - 30f);
+        float z = Random.Range(initialPlayerPosition.z + 20f, initialEarthPosition.z - 30f);
         
 
 

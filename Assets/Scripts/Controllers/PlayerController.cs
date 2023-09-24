@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             limPos.y = Mathf.Clamp(limPos.y, -frustumWidth, frustumWidth);
 
             // se corrige en caso de sobrepasarlos
-            if (Mathf.Abs(this.transform.position.x - limPos.x) > 0.1f)
+            if (Mathf.Abs(this.transform.position.x - limPos.x) > 0.001f)
             {
                 if ((playerRB.velocity.x > 0 && limPos.x > 0) || (playerRB.velocity.x < 0 && limPos.x < 0))
                 {
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
-            if (Mathf.Abs(this.transform.position.y - limPos.y) > 0.1f)
+            if (Mathf.Abs(this.transform.position.y - limPos.y) > 0.001f)
             {
                 if ((playerRB.velocity.y > 0 && limPos.y > 0) || (playerRB.velocity.y < 0 && limPos.y < 0))
                 {

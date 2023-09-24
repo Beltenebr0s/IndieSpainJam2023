@@ -14,6 +14,7 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
     public float minDistanceToPlayer;
 
     private Vector3 playerPos;
+    private Quaternion rotation;
 
     private bool passNearPlayer = false;
 
@@ -34,9 +35,9 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         this.Move();
     }
 
-
     public void Move()
     {
+        
         // en caso de que este lejos del jugador
         if(!passNearPlayer && Vector3.Distance(this.transform.position, this.player.transform.position) > 20f)
         {
@@ -53,7 +54,15 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         {
             Destroy(this.gameObject);
         }
+        // rotar el asteroide para que mire en la direccion en la que se mueve
+        rotation = Quaternion.LookRotation(direction);
+        if(this.transform.rotation != rotation)
+            this.transform.rotation = Quaternion.LookRotation(direction);
+
+        // mover el asteroide
         this.transform.position += direction * speed * Time.deltaTime;
+
+        // mantener el asteroide a la misma posicion z del jugador para asegurarse que le golpea
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.player.transform.position.z);
     }
 
@@ -91,9 +100,6 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         }
 
         Vector3 pos = new Vector3(xPosition, yPosition, zPosition);
-        
-        this.transform.Rotate(new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f)));
-
         return pos;
     }
     
