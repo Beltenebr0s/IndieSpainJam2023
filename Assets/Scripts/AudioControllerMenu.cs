@@ -1,50 +1,40 @@
 using FMOD.Studio;
 using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioController : MonoBehaviour
+public class AudioControllerMenu : MonoBehaviour
 {
-    [SerializeField, BankRef] private string mainBank;
+    [SerializeField, BankRef] private string bank;
 
     [SerializeField] private Bus masterBus;
     [SerializeField] private Bus musicBus;
     [SerializeField] private Bus SFXBus;
 
-    private EventInstance gameplayMusicI;
-    private EventInstance deathI;
+    private EventInstance menuMusicI;
 
-    [SerializeField] private EventReference gameplayMusic;
-    [SerializeField] private EventReference moonDeath;
-    [SerializeField] private EventReference earthDeath;
-
-    private List<string> param;
+    [SerializeField] private EventReference menuMusic;
 
     private void Awake()
     {
-        RuntimeManager.LoadBank(mainBank, true);
+        RuntimeManager.LoadBank(bank, true);
         RuntimeManager.WaitForAllSampleLoading();
     }
+
     void Start()
     {
         masterBus = RuntimeManager.GetBus("bus:/");
         musicBus = RuntimeManager.GetBus("bus:/Music");
         SFXBus = RuntimeManager.GetBus("bus:/SFX");
-        
-        gameplayMusicI = RuntimeManager.CreateInstance(gameplayMusic);
 
-        gameplayMusicI.start();
+        menuMusicI = RuntimeManager.CreateInstance(menuMusic);
 
-        param = new List<string>{"Distance", "Death", "Victory"};
+        menuMusicI.start();
     }
 
     void Update()
     {
-        foreach (var field in param)
-        {
-            gameplayMusicI.setParameterByName(field, (float)typeof(AudioParameters).GetField(field).GetValue(null));
-        }
-
         if (AudioParameters.MuteSFX)
         {
             SFXBus.setVolume(0);
@@ -71,22 +61,11 @@ public class AudioController : MonoBehaviour
         {
             masterBus.setVolume(AudioParameters.SFXVol);
         }
-    }
-
-    public void PlayDeath()
-    {
-        deathI = RuntimeManager.CreateInstance(moonDeath);
-        deathI.start();
-    }
-
-    public void PlayVictory()
-    {
-        deathI = RuntimeManager.CreateInstance(earthDeath);
-        deathI.start();
+        
     }
 
     private void OnDisable()
     {
-        gameplayMusicI.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        menuMusicI.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

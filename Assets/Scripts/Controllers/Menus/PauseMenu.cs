@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        AudioParameters.MuteSFX = false;
         Time.timeScale = 1f;
         gameObject.SetActive(false);
     }

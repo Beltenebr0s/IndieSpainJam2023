@@ -22,6 +22,6 @@ public class DistanceCalculator : MonoBehaviour
 
         slider.value = normalizedDistance;
 
-        AudioParameters.Distance = normalizedDistance;
+        AudioParameters.Distance = 1 - normalizedDistance;
     }
 }

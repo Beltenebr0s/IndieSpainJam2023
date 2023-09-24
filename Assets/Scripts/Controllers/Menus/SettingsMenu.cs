@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class SettingsMenuController : MonoBehaviour
 {
-    private AudioSource musicAudioSource;
-
     void Start()
     {
         AddListeners();
@@ -23,16 +21,16 @@ public class SettingsMenuController : MonoBehaviour
 
     private void UpdateMusicVolume(float volume)
     {
-        
+        AudioParameters.MusicVol = volume;
     }
 
         private void UpdateSFXVolume(float volume)
     {
-
+        AudioParameters.SFXVol = volume;
     }
 
     private void UpdateMasterVolume(float volume)
     {
-        musicAudioSource.volume = volume;
+        AudioParameters.MasterVol = volume;
     }
 }
