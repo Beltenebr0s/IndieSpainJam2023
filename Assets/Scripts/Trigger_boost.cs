@@ -31,6 +31,7 @@ public class Trigger_boost : MonoBehaviour
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                other.transform.Find("Moon").GetComponent<Animator>().SetTrigger("LaunchPlayer");
                 Vector3 originalVelocity = rb.velocity;
                 Debug.Log("Velocidad del jugador antes del aumento: " + rb.velocity);
                 rb.velocity *= boostAmount;

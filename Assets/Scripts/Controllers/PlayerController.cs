@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
 
     public void acelerar(float speedAceleration)
     {
-        playerAnimator.SetTrigger("LaunchPlayer");
         float zVelocity = Mathf.Clamp(playerRB.velocity.z + speedAceleration, 0, maxSpeed);
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, zVelocity);
     }

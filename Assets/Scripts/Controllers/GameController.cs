@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -36,7 +37,9 @@ public class GameController : MonoBehaviour
     public List<RawImage> triesList; 
     public Texture tryIconEnabled;
     public Texture tryIconDisabled;
-
+    public GameObject hud;
+    public GameObject gameOverMenu;
+    public TMP_Text scoreTextUI;
     public float score;
 
     private void Start()
@@ -46,6 +49,8 @@ public class GameController : MonoBehaviour
         {
             img.texture = tryIconEnabled;
         }
+        hud.SetActive(true);
+        gameOverMenu.SetActive(false);
         timeToNextBoosts = Random.Range(minTimeBetweenBoosts, maxTimeBetweenBoosts);
     }
 
@@ -132,5 +137,8 @@ public class GameController : MonoBehaviour
         endGame = true;
         player.GetComponent<PlayerController>().EndGame();
         // Gameover Screen
+        hud.SetActive(false);
+        scoreTextUI.SetText("Final score: " + score);
+        gameOverMenu.SetActive(true);
     }
 }
