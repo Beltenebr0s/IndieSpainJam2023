@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab1c0a536a66b644a69fb45e127ba8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerToSpawn: 1
+  timerToSpawn: 3
   tSpawn: 0
   spawnPosition: {fileID: 811441881}
   timerToDespawn: 1e+9
