@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOverMenu;
     public TMP_Text scoreTextUI;
     public float score;
+    public Animation finalAnimation;
 
     private void Start()
     {
@@ -137,5 +138,7 @@ public class GameController : MonoBehaviour
         hud.SetActive(false);
         scoreTextUI.SetText("Final score: " + Mathf.Round(score));
         gameOverMenu.SetActive(true);
+        finalAnimation = GameObject.Find("PlenoAnim").GetComponent<Animation>();
+        finalAnimation.Play();
     }
 }
