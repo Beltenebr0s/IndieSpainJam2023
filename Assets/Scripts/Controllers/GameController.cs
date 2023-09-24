@@ -67,6 +67,7 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("pause Game");
+            AudioParameters.MuteSFX = true;
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -108,10 +109,14 @@ public class GameController : MonoBehaviour
             RestartGame();
         }
         currentTry++;
+
+        AudioParameters.Victory = 1;
     }
 
     public void RestartGame()
     {
+        AudioParameters.Victory = 0;
+
         //Debug.Log("Start Game");
         player.transform.position = initialPlayerPosition.position;
         player.GetComponent<PlayerController>().Reset();
