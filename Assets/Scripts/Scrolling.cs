@@ -7,7 +7,7 @@ public class Scrolling : MonoBehaviour
 {
 
     [SerializeField] private RawImage image;
-    [SerializeField] private float x, y;
+    [SerializeField] public float x, y;
     [SerializeField] private bool reversedInPause;
 
     private float dt, xmove, ymove;
