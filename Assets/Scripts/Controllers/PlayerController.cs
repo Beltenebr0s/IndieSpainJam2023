@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public float frustumWidth;
 
+    private bool launchAnimation = false;
+
     public bool enCaida = false;
 
     private Rigidbody playerRB;
@@ -107,16 +109,15 @@ public class PlayerController : MonoBehaviour
 
     public void Reset()
     {
-        Debug.LogError("Reset");
         if (!launchAnimation)
         {
             playerRB.velocity = Vector3.zero;
             playerAnimator.SetTrigger("IddlePlayer");
             enCaida = false;
+            this.transform.LookAt(tierra.transform.position);
         }
     }
 
-    public bool launchAnimation = false;
     public void LaunchAnimation()
     {
         if (!launchAnimation)
@@ -124,19 +125,12 @@ public class PlayerController : MonoBehaviour
         
         launchAnimation = true;
         Debug.LogError("LaunchAnimation");
+        playerAnimator.ResetTrigger("IddlePlayer");
         playerAnimator.SetTrigger("LaunchPlayer");
-        LaunchAnimtionTwo();
-    }
-
-    public void LaunchAnimtionTwo()
-    {
-        Debug.LogError("LaunchAnimation2");
-        
     }
 
     public void Launch()
     {
-        Debug.LogError("Launch");
         enCaida = true;
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
         RuntimeManager.PlayOneShot(scream);
