@@ -36,6 +36,7 @@ public class AudioController : MonoBehaviour
         gameplayMusicI.start();
 
         AudioParameters.Death = 0;
+        AudioParameters.MuteSFX = false;
 
         param = new List<string>{"Distance", "Death", "Victory"};
     }
