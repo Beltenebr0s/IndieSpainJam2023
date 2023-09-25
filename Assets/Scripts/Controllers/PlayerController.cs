@@ -107,10 +107,13 @@ public class PlayerController : MonoBehaviour
 
     public void Reset()
     {
-        Debug.LogError("Reset");
-        playerRB.velocity = Vector3.zero;
-        enCaida = false;
-        playerAnimator.SetTrigger("IddlePlayer");
+        if (!launchAnimation)
+        {
+            Debug.LogError("Reset");
+            playerRB.velocity = Vector3.zero;
+            enCaida = false;
+            playerAnimator.SetTrigger("IddlePlayer");
+        }
     }
 
     public bool launchAnimation = false;
