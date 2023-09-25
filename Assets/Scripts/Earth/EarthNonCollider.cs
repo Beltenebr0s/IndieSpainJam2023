@@ -12,9 +12,8 @@ public class EarthNonCollider : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.CompareTag("Player"))
         {
             earth.GetComponent<PlanetController>().HandleCollision(false, player);
         }

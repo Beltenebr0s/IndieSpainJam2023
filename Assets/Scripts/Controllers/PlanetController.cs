@@ -16,6 +16,8 @@ public class PlanetController : MonoBehaviour
     public float firstHealthThreshold = 980;
     public float secondHealthThreshold = 960;
 
+    private bool hit = false;
+
     public ObstacleSpawner objectSpawn;
     void Start()
     {
@@ -44,9 +46,20 @@ public class PlanetController : MonoBehaviour
 
     public void EndGame()
     {
-        startGame = false;
-        endGame = true;
+        if(!hit)
+        {
+            hit = true;
+            startGame = false;
+            endGame = true;
+            StartCoroutine("EndGameCoroutine");
+        }
+    }
+
+    IEnumerator EndGameCoroutine()
+    {
+        yield return new WaitForSeconds(4f);
         gameController.EndTurn();
+        hit = false;
     }
 
     public void HandleCollision(bool earthWasHit, GameObject player)

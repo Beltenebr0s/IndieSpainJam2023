@@ -46,11 +46,6 @@ public class PlayerController : MonoBehaviour
         frustumWidth = (frustumHeight / Camera.main.aspect)*0.7f;
         gameControoler.frustumWidth = frustumWidth;
     }
-
-    public void launch()
-    {
-        Debug.LogError("Lanzando");
-    }
     
 
     // Update is called once per frame
