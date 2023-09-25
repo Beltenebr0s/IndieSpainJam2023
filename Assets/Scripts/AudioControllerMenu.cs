@@ -50,7 +50,7 @@ public class AudioControllerMenu : MonoBehaviour
         }
         else
         {
-            musicBus.setVolume(AudioParameters.SFXVol);
+            musicBus.setVolume(AudioParameters.MusicVol);
         }
 
         if (AudioParameters.Mute)
@@ -59,7 +59,7 @@ public class AudioControllerMenu : MonoBehaviour
         }
         else
         {
-            masterBus.setVolume(AudioParameters.SFXVol);
+            masterBus.setVolume(AudioParameters.MasterVol);
         }
         
     }
