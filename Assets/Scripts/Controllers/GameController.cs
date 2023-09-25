@@ -41,7 +41,8 @@ public class GameController : MonoBehaviour
     public GameObject gameOverMenu;
     public TMP_Text scoreTextUI;
     public float score;
-    public Animation finalAnimation;
+    public Animation finalAnimationGood;
+    public Animation finalAnimationTriste;
 
     private void Start()
     {
@@ -120,6 +121,7 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
         AudioParameters.Victory = 0;
+        AudioParameters.Death = 0;
         player.transform.position = initialPlayerPosition.position;
         Camera.main.GetComponent<CamaraController>().ResetToInitialPosition();
         player.GetComponent<PlayerController>().Reset();
@@ -132,7 +134,6 @@ public class GameController : MonoBehaviour
 
     public void EndGame()
     {
-        AudioParameters.Victory = 1;
         startGame = false;
         endGame = true;
         player.GetComponent<PlayerController>().EndGame();
@@ -141,7 +142,18 @@ public class GameController : MonoBehaviour
         hud.SetActive(false);
         scoreTextUI.SetText("Final score: " + Mathf.Round(score));
         gameOverMenu.SetActive(true);
-        finalAnimation = GameObject.Find("PlenoAnim").GetComponent<Animation>();
-        finalAnimation.Play();
+        if(score > 50)
+        {
+            AudioParameters.Victory = 1;
+            finalAnimationGood = GameObject.Find("PlenoAnim").GetComponent<Animation>();
+            finalAnimationGood.Play();
+        }
+        else
+        {
+            AudioParameters.Death = 1;
+            finalAnimationTriste = GameObject.Find("OopsAnim").GetComponent<Animation>();
+            finalAnimationTriste.Play();
+        }
+        
     }
 }
