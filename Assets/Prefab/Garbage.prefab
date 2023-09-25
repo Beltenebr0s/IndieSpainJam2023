@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1361740201057361028}
   - component: {fileID: 3942203531907330963}
   - component: {fileID: 2583718672910849152}
+  - component: {fileID: -1792196978338360182}
   m_Layer: 0
   m_Name: Garbage
   m_TagString: Untagged
@@ -98,13 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49d5dd1d967fa543bf30373d9dadab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  earth: {fileID: 0}
-  player: {fileID: 0}
-  gameController: {fileID: 0}
   forceMax: 1
   change: 0.01
-  force: 0
-  rotationDirection: 0
   damageValue: 1
 --- !u!135 &2583718672910849152
 SphereCollider:
@@ -127,6 +123,32 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &-1792196978338360182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704254318029904476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8ac64945c2cb94ba56194ba36a1fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sustainAudio:
+    Guid:
+      Data1: 70064753
+      Data2: 1090228997
+      Data3: 1169907647
+      Data4: 1336178129
+    Path: event:/SFX/Obstacles/Garbage
+  impactAudio:
+    Guid:
+      Data1: -1204035850
+      Data2: 1103912335
+      Data3: 345565344
+      Data4: 802476339
+    Path: event:/SFX/Obstacles/Garbage dest
 --- !u!1001 &4657460216317204498
 PrefabInstance:
   m_ObjectHideFlags: 0
