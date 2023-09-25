@@ -545,7 +545,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &350411694
 MeshRenderer:
@@ -621,6 +621,13 @@ MonoBehaviour:
   playerAnimator: {fileID: 1874054512}
   enCaida: 0
   velocity: 0
+  scream:
+    Guid:
+      Data1: 2140890488
+      Data2: 1327530165
+      Data3: 1727078568
+      Data4: 1369738062
+    Path: event:/SFX/Scream 1
 --- !u!54 &350411697
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1404,6 +1411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 350411691}
   firstLaunch: 0
+  distanceFromPlayer: 13
 --- !u!114 &2034260931
 MonoBehaviour:
   m_ObjectHideFlags: 0

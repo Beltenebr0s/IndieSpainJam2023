@@ -23,6 +23,7 @@ public class ObjectAudio : MonoBehaviour
     public void PlayAudio()
     {
         _instance.start();
+        RuntimeManager.AttachInstanceToGameObject(_instance, gameObject.GetComponent<Transform>(), true);
     }
 
     public void StopAudio()

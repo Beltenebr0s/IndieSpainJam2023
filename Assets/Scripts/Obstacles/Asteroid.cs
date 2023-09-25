@@ -110,6 +110,7 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         if (collider.gameObject.CompareTag("Player"))
         {
             DamagePlayer(damageValue);
+            Destroy(gameObject);
         }
         else if (collider.gameObject.CompareTag("Obstacle"))
         {
