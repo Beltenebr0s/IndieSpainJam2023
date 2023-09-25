@@ -119,6 +119,13 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
+        StartCoroutine(RestartGameCoroutine());
+    }
+
+    // corrutine for riset game
+    IEnumerator RestartGameCoroutine()
+    {
+        yield return new WaitForSeconds(4f);
         AudioParameters.Victory = 0;
         player.transform.position = initialPlayerPosition.position;
         player.GetComponent<PlayerController>().Reset();
