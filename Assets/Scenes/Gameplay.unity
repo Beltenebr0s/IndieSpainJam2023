@@ -811,6 +811,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earth: {fileID: 419061221}
   player: {fileID: 350411691}
+  crash:
+    Guid:
+      Data1: -1695322717
+      Data2: 1107091368
+      Data3: 1275853190
+      Data4: 998089636
+    Path: event:/SFX/Moon death
 --- !u!4 &427934602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
