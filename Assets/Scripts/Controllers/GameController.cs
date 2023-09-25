@@ -103,8 +103,6 @@ public class GameController : MonoBehaviour
     }
     public void EndTurn()
     {
-        Debug.LogError("QUE HACES 1 ");
-
         startGame = false;
         Debug.Log("Ended turn: " + currentTry);
         triesList[currentTry].texture = tryIconDisabled;

@@ -54,7 +54,7 @@ public class Warming : MonoBehaviour
 
 
             float rot_z = Mathf.Atan2(this.transform.position.y, this.transform.position.x) * Mathf.Rad2Deg;
-            warmUi.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+            warmUi.transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
 
             warmUi.transform.position = screenPosition;
             this.gameObject.GetComponent<Renderer>().material.color = Color.red;

@@ -124,7 +124,6 @@ public class PlayerController : MonoBehaviour
             gameControoler.RestartGame();
         
         launchAnimation = true;
-        Debug.LogError("LaunchAnimation");
         playerAnimator.ResetTrigger("IddlePlayer");
         playerAnimator.SetTrigger("LaunchPlayer");
     }
