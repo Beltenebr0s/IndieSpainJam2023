@@ -12,13 +12,17 @@ public class ObjectAudio : MonoBehaviour
     void Start()
     {
         _instance = RuntimeManager.CreateInstance(sustainAudio);
-        _instance.start();
         RuntimeManager.AttachInstanceToGameObject(_instance, gameObject.GetComponent<Transform>(), true);
     }
 
     public void PlayImpactAudio()
     {
         RuntimeManager.PlayOneShot(impactAudio);
+    }
+
+    public void PlayAudio()
+    {
+        _instance.start ();
     }
 
     public void StopAudio()
