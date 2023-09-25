@@ -107,35 +107,40 @@ public class PlayerController : MonoBehaviour
 
     public void Reset()
     {
+        Debug.LogError("Reset");
         if (!launchAnimation)
         {
-            Debug.LogError("Reset");
             playerRB.velocity = Vector3.zero;
-            enCaida = false;
             playerAnimator.SetTrigger("IddlePlayer");
+            enCaida = false;
         }
     }
 
     public bool launchAnimation = false;
     public void LaunchAnimation()
     {
+        if (!launchAnimation)
+            gameControoler.RestartGame();
+        
         launchAnimation = true;
         Debug.LogError("LaunchAnimation");
-        gameControoler.RestartGame();
         playerAnimator.SetTrigger("LaunchPlayer");
+        LaunchAnimtionTwo();
+    }
+
+    public void LaunchAnimtionTwo()
+    {
+        Debug.LogError("LaunchAnimation2");
+        
     }
 
     public void Launch()
     {
-        if (launchAnimation)
-        {
-            Debug.LogError("Launch");
-            enCaida = true;
-            playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
-            RuntimeManager.PlayOneShot(scream);
-            launchAnimation = false;
-        }
-
+        Debug.LogError("Launch");
+        enCaida = true;
+        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
+        RuntimeManager.PlayOneShot(scream);
+        launchAnimation = false;
     }
 
     public void acelerar(float speedAceleration)
