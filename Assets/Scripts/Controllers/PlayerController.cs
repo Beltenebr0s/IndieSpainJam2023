@@ -26,8 +26,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRB;
 
-    private bool firstLaunch = true;
-
     [Header("Para debug <3")]
     public float velocity;
 
@@ -56,7 +54,6 @@ public class PlayerController : MonoBehaviour
         {
             if (!enCaida && gameControoler.startGame){
                 LaunchAnimation();
-                firstLaunch = false;
             }
         }
 
@@ -112,6 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRB.velocity = Vector3.zero;
         enCaida = false;
+        playerAnimator.SetTrigger("IddlePlayer");
     }
     public void LaunchAnimation()
     {
