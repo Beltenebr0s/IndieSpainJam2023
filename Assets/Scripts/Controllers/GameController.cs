@@ -123,6 +123,7 @@ public class GameController : MonoBehaviour
     {
         AudioParameters.Victory = 0;
         player.transform.position = initialPlayerPosition.position;
+        Camera.main.GetComponent<CamaraController>().ResetToInitialPosition();
         player.GetComponent<PlayerController>().Reset();
         earth.transform.position = initialEarthPosition.position;
         startGame = true;

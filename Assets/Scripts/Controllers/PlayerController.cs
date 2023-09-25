@@ -54,13 +54,9 @@ public class PlayerController : MonoBehaviour
         velocity = playerRB.velocity.z;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (firstLaunch && !enCaida && gameControoler.startGame){
+            if (!enCaida && gameControoler.startGame){
                 LaunchAnimation();
                 firstLaunch = false;
-            }
-            else if(!enCaida && gameControoler.startGame){
-                LaunchAnimation();
-                Launch();
             }
         }
 

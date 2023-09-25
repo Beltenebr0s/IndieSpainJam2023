@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class Launch : MonoBehaviour
 {
-    private GameObject camera;
-    private GameObject player;
-    private bool firstLaunch = true;
-    private bool onPosition = false;
+    private GameObject _camera;
     public void launch()
     {
-        if(firstLaunch)
-        {
-            camera = GameObject.Find("Main Camera");
-            camera.GetComponent<CamaraController>().firstLaunch = true;
-            firstLaunch = false;
-        }
+        _camera = GameObject.Find("Main Camera");
+        _camera.GetComponent<CamaraController>().isLaunching = true;
+
     }
 }
