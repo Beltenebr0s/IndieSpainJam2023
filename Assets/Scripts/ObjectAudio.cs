@@ -22,7 +22,7 @@ public class ObjectAudio : MonoBehaviour
 
     public void PlayAudio()
     {
-        _instance.start ();
+        _instance.start();
     }
 
     public void StopAudio()
@@ -33,5 +33,12 @@ public class ObjectAudio : MonoBehaviour
     public void OnDestroy()
     {
         _instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public bool IsNotPlaying()
+    {
+        PLAYBACK_STATE state;
+        _instance.getPlaybackState(out state);
+        return state == PLAYBACK_STATE.STOPPED; 
     }
 }

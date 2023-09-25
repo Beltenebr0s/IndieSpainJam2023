@@ -7,9 +7,12 @@ public class Trigger_boost : MonoBehaviour
     public float boostAmount = 5.0f; // Ajusta la velocidad
     public float boostDuration = 5.0f; // Duración del aumento de velocidad
     public GameObject player;
+
+    private ObjectAudio objectAudio;
     void Start()
     {
         player = GameObject.Find("Player");
+        objectAudio = GetComponent<ObjectAudio>();
     }
     void Update()
     {
@@ -28,6 +31,7 @@ public class Trigger_boost : MonoBehaviour
         Debug.Log("objeto detectado");
         if (other.CompareTag("Player"))
         {
+            objectAudio.PlayImpactAudio();
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (rb != null)
             {

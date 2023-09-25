@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5359369715407995692}
   - component: {fileID: 4902604258887941087}
   - component: {fileID: 7282182638907381033}
+  - component: {fileID: 1373716088710156483}
   m_Layer: 0
   m_Name: Boost
   m_TagString: Untagged
@@ -122,6 +123,32 @@ MonoBehaviour:
   boostAmount: 5
   boostDuration: 5
   player: {fileID: 0}
+--- !u!114 &1373716088710156483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192464795109828459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8ac64945c2cb94ba56194ba36a1fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sustainAudio:
+    Guid:
+      Data1: 1911659429
+      Data2: 1181544214
+      Data3: 1681997740
+      Data4: -1538701023
+    Path: event:/SFX/Power up shimmer
+  impactAudio:
+    Guid:
+      Data1: -1915180267
+      Data2: 1187275562
+      Data3: 714060447
+      Data4: 1533810231
+    Path: event:/SFX/Power up grab
 --- !u!1001 &367302268347179300
 PrefabInstance:
   m_ObjectHideFlags: 0

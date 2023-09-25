@@ -85,7 +85,6 @@ public class Garbage : MonoBehaviour, IIdleObstacle
             // Audio
             Destroy(other.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
     public void setDamageValue(int damageValue)
