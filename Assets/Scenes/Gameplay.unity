@@ -372,6 +372,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1874054512}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1874054513}
   m_SourcePrefab: {fileID: 100100000, guid: 5ef7b75229b6a3f43bda8a0beba85961, type: 3}
 --- !u!111 &179866419 stripped
 Animation:
@@ -452,6 +455,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6dae4733503b0294abfcc86b19ac0622, type: 3}
   m_PrefabInstance: {fileID: 241308288}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &246375440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 246375441}
+  m_Layer: 0
+  m_Name: CameraAxis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &246375441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246375440}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1068.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &350411691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1202,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1874054513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874054511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278e258929dfb724ab634707912481fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1886136061 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 359124794667839300, guid: 8b71557788ec0bc47adae41d1a20e373, type: 3}
@@ -1290,6 +1336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 350411691}
+  firstLaunch: 0
 --- !u!114 &2034260931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,6 +1584,7 @@ SceneRoots:
   - {fileID: 419061225}
   - {fileID: 350411692}
   - {fileID: 2034260927}
+  - {fileID: 246375441}
   - {fileID: 2051046471}
   - {fileID: 811441879}
   - {fileID: 6986972408613998527}

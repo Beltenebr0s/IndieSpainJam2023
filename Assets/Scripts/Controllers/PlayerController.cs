@@ -112,13 +112,13 @@ public class PlayerController : MonoBehaviour
         gameControoler.RestartGame();
         playerAnimator.SetTrigger("LaunchPlayer");
         enCaida = true;
-        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
+        //playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
     }
 
     public void acelerar(float speedAceleration)
     {
         float zVelocity = Mathf.Clamp(playerRB.velocity.z + speedAceleration, 0, maxSpeed);
-        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, zVelocity);
+        //playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, zVelocity);
     }
 
     public void hitPlayer(float force)

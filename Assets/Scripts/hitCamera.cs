@@ -5,6 +5,7 @@ using UnityEngine;
 public class hitCamera : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other) {
-        Destroy(other.gameObject);
+        if(other.gameObject.tag != "Player")
+            Destroy(other.gameObject);
     }
 }
