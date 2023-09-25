@@ -115,7 +115,6 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
         {
             Destroy(collider.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
     public void setDamageValue(int damageValue)

@@ -18,8 +18,11 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     private Vector3 initialPlayerPosition;
     private Vector3 initialEarthPosition;
 
-    private void Start() {
+    private ObjectAudio objectAudio;
+
+    void Start() {
         rotationDirection = Mathf.Sign(Random.Range(-1f, 1f));
+        objectAudio = GetComponent<ObjectAudio>();
     }
 
     void Update()
@@ -47,6 +50,7 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     public void DamagePlayer(int damageValue)
     {
         player.GetComponent<PlayerController>().hitPlayer(damageValue);
+        objectAudio.PlayImpactAudio();
     }
 
     public Vector3 FindStartingPosition()
@@ -85,7 +89,6 @@ public class Garbage : MonoBehaviour, IIdleObstacle
             // Audio
             Destroy(other.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
     public void setDamageValue(int damageValue)

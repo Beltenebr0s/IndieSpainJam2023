@@ -93,7 +93,6 @@ public class Misile : MonoBehaviour, IMovingObstacle
         {
             Destroy(other.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
     public void setDamageValue(int damageValue)
