@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRB;
 
+    private bool firstLaunch = true;
+
     [Header("Para debug <3")]
     public float velocity;
 
@@ -31,10 +33,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRB = this.GetComponent<Rigidbody>();
+        
+    }
+
+    public void calculateFrustumWidth(float distanceFromCameraZ)
+    {
         // se calcula los limites en los que se puede mover el personaje
-        float distanceFromCameraZ = Vector3.Distance(new Vector3(0, 0, this.transform.position.z), Camera.main.transform.position);
         float frustumHeight = 2.0f * distanceFromCameraZ * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
-        frustumWidth = frustumHeight / Camera.main.aspect;
+        frustumWidth = (frustumHeight / Camera.main.aspect)*0.7f;
         gameControoler.frustumWidth = frustumWidth;
     }
 
@@ -50,8 +56,14 @@ public class PlayerController : MonoBehaviour
         velocity = playerRB.velocity.z;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!enCaida && gameControoler.startGame)
-                lanzarse();
+            if (firstLaunch && !enCaida && gameControoler.startGame){
+                LaunchAnimation();
+                firstLaunch = false;
+            }
+            else if(!enCaida && gameControoler.startGame){
+                LaunchAnimation();
+                Launch();
+            }
         }
 
         if (enCaida)
@@ -107,18 +119,22 @@ public class PlayerController : MonoBehaviour
         playerRB.velocity = Vector3.zero;
         enCaida = false;
     }
-    public void lanzarse()
+    public void LaunchAnimation()
     {
         gameControoler.RestartGame();
         playerAnimator.SetTrigger("LaunchPlayer");
+    }
+
+    public void Launch()
+    {
         enCaida = true;
-        //playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
+        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
     }
 
     public void acelerar(float speedAceleration)
     {
         float zVelocity = Mathf.Clamp(playerRB.velocity.z + speedAceleration, 0, maxSpeed);
-        //playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, zVelocity);
+        playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, zVelocity);
     }
 
     public void hitPlayer(float force)

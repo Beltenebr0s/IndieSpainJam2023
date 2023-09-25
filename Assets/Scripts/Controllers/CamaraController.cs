@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CamaraController : MonoBehaviour
 {
-    private float distanceFromPlayer;
     public GameObject player;
     public bool firstLaunch = false;
     private bool onPosition = false;
     private bool firstPosition = false;
+
+    public float distanceFromPlayer = 13f;
 
     private Vector3 firstPositionVector = new Vector3(7f,0.3f,0f);
     private Vector3 secondPositionVector = new Vector3(0,0,0);
@@ -17,9 +18,10 @@ public class CamaraController : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        distanceFromPlayer = this.transform.position.z - player.transform.position.z;
         firstPositionVector.z = player.transform.position.z;
-        secondPositionVector = new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z - 13);
+        secondPositionVector = new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z - distanceFromPlayer);
+
+        player.GetComponent<PlayerController>().calculateFrustumWidth(distanceFromPlayer);
     }
 
     // Update is called once per frame
@@ -30,7 +32,6 @@ public class CamaraController : MonoBehaviour
         duration1 = (Vector3.Distance(secondPositionVector, firstPositionVector) * duration2)/Vector3.Distance(this.transform.position, firstPositionVector) ;
 
         float time = 0; 
-
 
         if(firstLaunch && !onPosition)
         {
@@ -52,15 +53,24 @@ public class CamaraController : MonoBehaviour
                 if(Vector3.Distance(this.transform.position, secondPositionVector) < 0.1f)
                 {
                     this.transform.position = secondPositionVector;
+                    player.GetComponent<PlayerController>().Launch();
                     onPosition = true;
                 }
             }
 
         }
         if(onPosition){
-            secondPositionVector.z = player.transform.position.z - 13;
+            secondPositionVector.z = player.transform.position.z - distanceFromPlayer;
             this.transform.position = secondPositionVector;
         }
+
+        float frustumHeight = 2.0f * distanceFromPlayer * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        float frustumWidth = frustumHeight / Camera.main.aspect;
+
+        Debug.DrawLine(new Vector3(-frustumWidth, -frustumWidth, player.transform.position.z), new Vector3(frustumWidth, -frustumWidth, player.transform.position.z), Color.red);
+        Debug.DrawLine(new Vector3(-frustumWidth, frustumWidth, player.transform.position.z), new Vector3(frustumWidth, frustumWidth, player.transform.position.z), Color.red);
+        Debug.DrawLine(new Vector3(-frustumWidth, -frustumWidth, player.transform.position.z), new Vector3(-frustumWidth, frustumWidth, player.transform.position.z), Color.red);
+        Debug.DrawLine(new Vector3(frustumWidth, -frustumWidth, player.transform.position.z), new Vector3(frustumWidth, frustumWidth, player.transform.position.z), Color.red);
 
     }
 }

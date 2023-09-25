@@ -29,7 +29,7 @@ public class Garbage : MonoBehaviour, IIdleObstacle
     {
         this.Move();
 
-        if (this.transform.position.z < player.transform.position.z - 10)
+        if (this.transform.position.z < player.transform.position.z - 50)
         {
             Destroy(this.gameObject);
         }

@@ -50,7 +50,7 @@ public class Asteroid : MonoBehaviour, IIdleObstacle
             passNearPlayer = true;
         }
         // en caso de que se aleje del jugador
-        else if(passNearPlayer && Vector3.Distance(this.transform.position, this.player.transform.position) > 10f)
+        else if(passNearPlayer && Vector3.Distance(this.transform.position, this.player.transform.position) > 50f)
         {
             Destroy(this.gameObject);
         }

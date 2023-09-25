@@ -27,6 +27,11 @@ public class Misile : MonoBehaviour, IMovingObstacle
         Move();
         //que gire que siempre mola mas
         transform.Rotate(Vector3.up * -10);
+
+        if(this.transform.position.z < player.transform.position.z - 50f)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Throw()

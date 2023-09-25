@@ -10,7 +10,6 @@ public class Listener : MonoBehaviour
         {
             if (other.GetComponent<Transform>().GetComponentInParent<ObjectAudio>().IsNotPlaying())
             {
-                Debug.LogError("Shut tf up");
                 other.GetComponent<Transform>().GetComponentInParent<ObjectAudio>().PlayAudio();
             }
         }

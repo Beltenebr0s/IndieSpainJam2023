@@ -29,7 +29,7 @@ public class Satellite : MonoBehaviour, IIdleObstacle
         this.Move();
 
         // destruir el satelite si se queda muy atras
-        if(this.transform.position.z < player.transform.position.z - 10f)
+        if(this.transform.position.z < player.transform.position.z - 50f)
         {
             Destroy(this.gameObject);
         }

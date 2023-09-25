@@ -137,18 +137,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sustainAudio:
     Guid:
-      Data1: 70064753
-      Data2: 1090228997
-      Data3: 1169907647
-      Data4: 1336178129
-    Path: event:/SFX/Obstacles/Garbage
+      Data1: 935227324
+      Data2: 1163342215
+      Data3: -1360687228
+      Data4: 105962274
+    Path: event:/SFX/Obstacles/Satellite
   impactAudio:
     Guid:
-      Data1: -1204035850
-      Data2: 1103912335
-      Data3: 345565344
-      Data4: 802476339
-    Path: event:/SFX/Obstacles/Garbage dest
+      Data1: -508663046
+      Data2: 1231125575
+      Data3: 917891459
+      Data4: 1537306496
+    Path: event:/SFX/Obstacles/Satellite dest
 --- !u!1001 &4657460216317204498
 PrefabInstance:
   m_ObjectHideFlags: 0
