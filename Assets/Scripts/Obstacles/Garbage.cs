@@ -82,11 +82,10 @@ public class Garbage : MonoBehaviour, IIdleObstacle
         if (other.gameObject.CompareTag("Player"))
         {
             DamagePlayer(damageValue);
-            
+            Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {
-            // Audio
             Destroy(other.gameObject);
         }
     }

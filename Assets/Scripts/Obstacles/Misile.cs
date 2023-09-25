@@ -92,7 +92,8 @@ public class Misile : MonoBehaviour, IMovingObstacle
         
         if (other.gameObject.CompareTag("Player"))
         {
-            DamagePlayer(damageValue);            
+            DamagePlayer(damageValue);
+            Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {

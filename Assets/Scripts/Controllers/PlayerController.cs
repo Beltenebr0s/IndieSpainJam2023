@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,11 +31,12 @@ public class PlayerController : MonoBehaviour
     [Header("Para debug <3")]
     public float velocity;
 
+    [SerializeField] private EventReference scream;
+
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = this.GetComponent<Rigidbody>();
-        
+        playerRB = this.GetComponent<Rigidbody>();  
     }
 
     public void calculateFrustumWidth(float distanceFromCameraZ)
@@ -129,6 +132,7 @@ public class PlayerController : MonoBehaviour
     {
         enCaida = true;
         playerRB.velocity = new Vector3(playerRB.velocity.x, playerRB.velocity.y, takeoffSpeed);
+        RuntimeManager.PlayOneShot(scream);
     }
 
     public void acelerar(float speedAceleration)
